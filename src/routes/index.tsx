@@ -11,7 +11,6 @@ import { AdminDashboard } from '@/pages/app/AdminDashboard'
 import { WardenDashboard } from '@/pages/app/WardenDashboard'
 import { StaffDashboard } from '@/pages/app/StaffDashboard'
 import { DesignSystemPage } from '@/pages/design-system/DesignSystemPage'
-import { ThemeExplorationPage } from '@/pages/design-system/ThemeExplorationPage'
 import { PhasePlaceholder } from '@/components/feedback/PhasePlaceholder'
 import { ProtectedRoute, useAuthStore } from '@/features/auth'
 
@@ -47,10 +46,6 @@ export const router = createBrowserRouter([
   {
     path: '/design-system',
     element: <DesignSystemPage />,
-  },
-  {
-    path: '/theme-exploration',
-    element: <ThemeExplorationPage />,
   },
 
   // Authenticated App Shell Routes

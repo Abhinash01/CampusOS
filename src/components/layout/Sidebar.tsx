@@ -100,7 +100,7 @@ export const Sidebar: React.FC = () => {
               className={cn(
                 'flex items-center gap-3 px-3 py-2 rounded-lg text-xs font-medium transition-colors relative group',
                 isActive
-                  ? 'bg-indigo-50 text-indigo-700 font-semibold'
+                  ? 'bg-rose-50 text-rose-700 font-semibold'
                   : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900',
                 isCollapsed && 'justify-center px-2'
               )}
@@ -108,14 +108,14 @@ export const Sidebar: React.FC = () => {
               <Icon
                 className={cn(
                   'w-4 h-4 shrink-0 transition-colors',
-                  isActive ? 'text-indigo-600' : 'text-slate-400 group-hover:text-slate-600'
+                  isActive ? 'text-rose-600' : 'text-slate-400 group-hover:text-slate-600'
                 )}
               />
 
               {!isCollapsed && <span className="truncate flex-1">{item.name}</span>}
 
               {isActive && (
-                <span className="absolute left-0 top-1.5 bottom-1.5 w-1 bg-indigo-600 rounded-r-full" />
+                <span className="absolute left-0 top-1.5 bottom-1.5 w-1 bg-rose-600 rounded-r-full" />
               )}
             </NavLink>
           )
@@ -138,7 +138,7 @@ export const Sidebar: React.FC = () => {
                 className={cn(
                   'flex items-center gap-3 px-3 py-2 rounded-lg text-xs font-medium transition-colors group',
                   isActive
-                    ? 'bg-indigo-50 text-indigo-700 font-semibold'
+                    ? 'bg-rose-50 text-rose-700 font-semibold'
                     : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900',
                   isCollapsed && 'justify-center px-2'
                 )}
@@ -146,7 +146,7 @@ export const Sidebar: React.FC = () => {
                 <Icon
                   className={cn(
                     'w-4 h-4 shrink-0 transition-colors',
-                    isActive ? 'text-indigo-600' : 'text-slate-400 group-hover:text-slate-600'
+                    isActive ? 'text-rose-600' : 'text-slate-400 group-hover:text-slate-600'
                   )}
                 />
                 {!isCollapsed && <span className="truncate flex-1">{item.name}</span>}

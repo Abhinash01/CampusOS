@@ -8,19 +8,21 @@ export default {
     extend: {
       colors: {
         campus: {
-          bg: "#F8FAFC",
+          bg: "#FFFDFB",
           surface: "#FFFFFF",
           text: {
-            primary: "#0F172A",
-            secondary: "#64748B",
-            muted: "#94A3B8",
+            primary: "#18181B",
+            secondary: "#71717A",
+            muted: "#A1A1AA",
           },
-          border: "#E2E8F0",
+          border: "#E4E4E7",
           accent: {
-            DEFAULT: "#4F46E5",
-            hover: "#4338CA",
-            light: "#EEF2FF",
-            subtle: "#E0E7FF",
+            DEFAULT: "#E11D48",
+            hover: "#BE123C",
+            secondary: "#F97316",
+            accent: "#F59E0B",
+            light: "#FFE4E6",
+            subtle: "#FFF1F2",
           },
           success: {
             DEFAULT: "#16A34A",

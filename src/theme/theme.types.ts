@@ -1,4 +1,4 @@
-export type ThemeId = 'teal' | 'blue' | 'coral'
+export type ThemeId = 'coral'
 
 export interface ThemeColors {
   primary: string

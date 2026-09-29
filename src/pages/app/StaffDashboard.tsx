@@ -127,7 +127,7 @@ export const StaffDashboard: React.FC = () => {
               onClick={() => setSelectedTask(task.id)}
               className={`p-4 cursor-pointer transition-all border ${
                 selectedTask === task.id
-                  ? 'border-indigo-600 bg-indigo-50/20 shadow-card'
+                  ? 'border-rose-600 bg-rose-50/20 shadow-card'
                   : 'hover:border-slate-300'
               }`}
             >
@@ -161,7 +161,7 @@ export const StaffDashboard: React.FC = () => {
             <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 pb-4 border-b border-slate-100">
               <div>
                 <div className="flex items-center gap-2">
-                  <span className="font-mono text-sm font-bold text-indigo-700">
+                  <span className="font-mono text-sm font-bold text-rose-700">
                     {activeTask.id}
                   </span>
                   <Badge variant="info">{activeTask.category}</Badge>

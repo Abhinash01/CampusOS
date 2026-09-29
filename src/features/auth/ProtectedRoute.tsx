@@ -18,7 +18,7 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, allowe
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center">
         <div className="flex flex-col items-center gap-3">
-          <div className="w-8 h-8 rounded-lg bg-indigo-600 animate-pulse flex items-center justify-center text-white font-bold text-xs">
+          <div className="w-8 h-8 rounded-lg bg-rose-600 animate-pulse flex items-center justify-center text-white font-bold text-xs">
             OS
           </div>
           <p className="text-xs font-medium text-slate-500">Checking campus credentials…</p>

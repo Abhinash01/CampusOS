@@ -57,15 +57,15 @@ export const LoginPage: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8 selection:bg-indigo-100 selection:text-indigo-900 relative overflow-hidden">
+    <div className="min-h-screen bg-[#FFFDFB] flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8 selection:bg-rose-100 selection:text-rose-900 relative overflow-hidden">
       {/* Ambient background decoration */}
       <div className="absolute inset-0 bg-grid-slate radial-mask opacity-60 pointer-events-none -z-10" />
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none -z-10" />
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-96 h-96 bg-rose-500/10 rounded-full blur-3xl pointer-events-none -z-10" />
 
       <FadeIn direction="up">
         <div className="sm:mx-auto sm:w-full sm:max-w-md text-center">
           <Link to="/" className="inline-flex items-center gap-2.5 group mb-2">
-            <div className="w-9 h-9 rounded-[10px] bg-indigo-600 flex items-center justify-center text-white font-bold text-sm shadow-[0_1px_3px_rgba(79,70,229,0.3)] group-hover:bg-indigo-700 transition-colors">
+            <div className="w-9 h-9 rounded-[10px] bg-rose-600 flex items-center justify-center text-white font-bold text-sm shadow-[0_1px_3px_rgba(225,29,72,0.3)] group-hover:bg-rose-700 transition-colors">
               OS
             </div>
             <span className="text-xl font-bold tracking-tight text-slate-900">CampusOS</span>
@@ -115,13 +115,13 @@ export const LoginPage: React.FC = () => {
                   <input
                     type="checkbox"
                     defaultChecked
-                    className="w-4 h-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500"
+                    className="w-4 h-4 rounded border-slate-300 text-rose-600 focus:ring-rose-500"
                   />
                   <span className="ml-2 text-slate-600">Remember on this device</span>
                 </label>
                 <Link
                   to="/forgot-password"
-                  className="font-medium text-indigo-600 hover:text-indigo-700 hover:underline"
+                  className="font-medium text-rose-600 hover:text-rose-700 hover:underline"
                 >
                   Forgot password?
                 </Link>
@@ -152,7 +152,7 @@ export const LoginPage: React.FC = () => {
                 Don't have an account?{' '}
                 <Link
                   to="/register"
-                  className="font-semibold text-indigo-600 hover:text-indigo-700 hover:underline"
+                  className="font-semibold text-rose-600 hover:text-rose-700 hover:underline"
                 >
                   Create student account
                 </Link>

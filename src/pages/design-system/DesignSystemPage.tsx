@@ -27,19 +27,22 @@ export const DesignSystemPage: React.FC = () => {
   const [counterTrigger, setCounterTrigger] = useState(4820)
 
   const colorTokens = [
-    { name: 'Canvas Background', token: '--bg-canvas', hex: '#F8FAFC', class: 'bg-[#F8FAFC]', border: true },
-    { name: 'Surface Surface', token: '--bg-surface', hex: '#FFFFFF', class: 'bg-[#FFFFFF]', border: true },
-    { name: 'Primary Text', token: '--text-primary', hex: '#0F172A', class: 'bg-[#0F172A]', lightText: true },
-    { name: 'Secondary Text', token: '--text-secondary', hex: '#64748B', class: 'bg-[#64748B]', lightText: true },
-    { name: 'Subtle Border', token: '--border-subtle', hex: '#E2E8F0', class: 'bg-[#E2E8F0]', border: true },
-    { name: 'Primary Accent', token: '--accent-primary', hex: '#4F46E5', class: 'bg-[#4F46E5]', lightText: true },
+    { name: 'Canvas Background', token: '--bg-canvas', hex: '#FFFDFB', class: 'bg-[#FFFDFB]', border: true },
+    { name: 'Surface', token: '--bg-surface', hex: '#FFFFFF', class: 'bg-[#FFFFFF]', border: true },
+    { name: 'Primary Text', token: '--text-primary', hex: '#18181B', class: 'bg-[#18181B]', lightText: true },
+    { name: 'Secondary Text', token: '--text-secondary', hex: '#71717A', class: 'bg-[#71717A]', lightText: true },
+    { name: 'Subtle Border', token: '--border-subtle', hex: '#E4E4E7', class: 'bg-[#E4E4E7]', border: true },
+    { name: 'Primary Accent (Coral)', token: '--accent-primary', hex: '#E11D48', class: 'bg-[#E11D48]', lightText: true },
+    { name: 'Secondary Accent (Orange)', token: '--accent-secondary', hex: '#F97316', class: 'bg-[#F97316]', lightText: true },
+    { name: 'Accent Highlight (Amber)', token: '--accent-accent', hex: '#F59E0B', class: 'bg-[#F59E0B]', lightText: true },
+    { name: 'Soft Accent (Rose)', token: '--accent-subtle', hex: '#FFE4E6', class: 'bg-[#FFE4E6]', border: true },
     { name: 'Success Accent', token: '--color-success', hex: '#16A34A', class: 'bg-[#16A34A]', lightText: true },
     { name: 'Warning Accent', token: '--color-warning', hex: '#D97706', class: 'bg-[#D97706]', lightText: true },
     { name: 'Danger Accent', token: '--color-danger', hex: '#DC2626', class: 'bg-[#DC2626]', lightText: true },
   ]
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 pb-20 selection:bg-indigo-100 selection:text-indigo-900">
+    <div className="min-h-screen bg-[#FFFDFB] text-slate-900 pb-20 selection:bg-rose-100 selection:text-rose-900">
       {/* Top Header */}
       <header className="border-b border-slate-200 bg-white sticky top-0 z-30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
@@ -69,7 +72,7 @@ export const DesignSystemPage: React.FC = () => {
           <div>
             <h2 className="text-xl font-bold text-slate-900">1. Color System & Tokens</h2>
             <p className="text-xs text-slate-500">
-              Strictly curated HSL tokens engineered for modern enterprise clarity, trust, and calm aesthetics.
+              Strictly curated Campus Coral tokens engineered for modern enterprise clarity, trust, and warm campus aesthetics.
             </p>
           </div>
 
@@ -85,7 +88,7 @@ export const DesignSystemPage: React.FC = () => {
                 <div>
                   <div className="text-xs font-bold text-slate-900">{c.name}</div>
                   <div className="text-[11px] font-mono text-slate-500">{c.hex}</div>
-                  <div className="text-[10px] font-mono text-indigo-600">{c.token}</div>
+                  <div className="text-[10px] font-mono text-rose-600">{c.token}</div>
                 </div>
               </div>
             ))}
@@ -97,7 +100,7 @@ export const DesignSystemPage: React.FC = () => {
           <div>
             <h2 className="text-xl font-bold text-slate-900">2. Typography Hierarchy</h2>
             <p className="text-xs text-slate-500">
-              Native Inter font system with tabular numerals (<code className="text-indigo-600 font-mono">tnum</code>) for numerical data.
+              Native Inter font system with tabular numerals (<code className="text-rose-600 font-mono">tnum</code>) for numerical data.
             </p>
           </div>
 
@@ -151,7 +154,7 @@ export const DesignSystemPage: React.FC = () => {
           <div>
             <h2 className="text-xl font-bold text-slate-900">3. Button Variants & States</h2>
             <p className="text-xs text-slate-500">
-              Physics micro-tap feedback (<code className="text-indigo-600 font-mono">scale: 0.98</code>), accessible focus outlines, and built-in loading states.
+              Physics micro-tap feedback (<code className="text-rose-600 font-mono">scale: 0.98</code>), accessible focus outlines, and built-in loading states.
             </p>
           </div>
 
@@ -378,7 +381,7 @@ export const DesignSystemPage: React.FC = () => {
           <div>
             <h2 className="text-xl font-bold text-slate-900">9. Purposeful Animation Language</h2>
             <p className="text-xs text-slate-500">
-              Clean micro-interactions, animated metric numbers, and respect for <code className="text-indigo-600 font-mono">prefers-reduced-motion</code>.
+              Clean micro-interactions, animated metric numbers, and respect for <code className="text-rose-600 font-mono">prefers-reduced-motion</code>.
             </p>
           </div>
 
@@ -390,7 +393,7 @@ export const DesignSystemPage: React.FC = () => {
               </div>
 
               <div className="flex items-center gap-4">
-                <div className="text-3xl font-extrabold text-indigo-600">
+                <div className="text-3xl font-extrabold text-rose-600">
                   <AnimatedNumber value={counterTrigger} prefix="+" suffix=" Users" />
                 </div>
                 <Button

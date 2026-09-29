@@ -32,8 +32,8 @@ export const Badge: React.FC<BadgeProps> = ({
       dot: 'bg-red-600',
     },
     info: {
-      container: 'bg-indigo-50 text-indigo-700 border-indigo-200',
-      dot: 'bg-indigo-600',
+      container: 'bg-rose-50 text-rose-700 border-rose-200',
+      dot: 'bg-rose-600',
     },
   }
 

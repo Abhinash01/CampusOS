@@ -55,7 +55,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
                 ? 'border-red-500 focus:border-red-500 focus:ring-red-200'
                 : success
                 ? 'border-emerald-500 focus:border-emerald-500 focus:ring-emerald-200'
-                : 'border-slate-300 hover:border-slate-400 focus:border-indigo-600 focus:ring-indigo-100',
+                : 'border-zinc-300 hover:border-zinc-400 focus:border-rose-600 focus:ring-rose-100',
               className
             )}
             {...props}

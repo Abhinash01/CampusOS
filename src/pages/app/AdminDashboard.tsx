@@ -203,7 +203,7 @@ export const AdminDashboard: React.FC = () => {
                 <span className="font-mono text-slate-500">4.8h avg</span>
               </div>
               <div className="w-full bg-slate-100 rounded-full h-2">
-                <div className="bg-indigo-500 h-2 rounded-full w-[70%]" />
+                <div className="bg-rose-500 h-2 rounded-full w-[70%]" />
               </div>
             </div>
 

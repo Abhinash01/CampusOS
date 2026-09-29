@@ -16,7 +16,7 @@ export const RoleSwitcher: React.FC = () => {
     {
       id: 'student',
       label: 'Student',
-      icon: <GraduationCap className="w-4 h-4 text-indigo-600" />,
+      icon: <GraduationCap className="w-4 h-4 text-rose-600" />,
       path: '/app/student',
       desc: 'Attendance, Mess, Gate Pass',
     },
@@ -37,7 +37,7 @@ export const RoleSwitcher: React.FC = () => {
     {
       id: 'staff',
       label: 'Maintenance Staff',
-      icon: <Wrench className="w-4 h-4 text-blue-600" />,
+      icon: <Wrench className="w-4 h-4 text-orange-600" />,
       path: '/app/staff',
       desc: 'Task Queue, Field Repairs',
     },
@@ -89,7 +89,7 @@ export const RoleSwitcher: React.FC = () => {
                     className={cn(
                       'w-full flex items-start gap-2.5 px-3 py-2 rounded-lg text-left transition-colors text-xs',
                       role.id === currentRole
-                        ? 'bg-indigo-50/80 text-indigo-950 font-medium'
+                        ? 'bg-rose-50/80 text-rose-950 font-medium'
                         : 'text-slate-700 hover:bg-slate-50'
                     )}
                   >
@@ -98,7 +98,7 @@ export const RoleSwitcher: React.FC = () => {
                       <div className="flex items-center justify-between">
                         <span className="font-semibold text-slate-900">{role.label}</span>
                         {role.id === currentRole && (
-                          <Check className="w-3.5 h-3.5 text-indigo-600" />
+                          <Check className="w-3.5 h-3.5 text-rose-600" />
                         )}
                       </div>
                       <p className="text-[11px] text-slate-500 truncate mt-0.5">{role.desc}</p>

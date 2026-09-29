@@ -75,7 +75,7 @@ export const Topbar: React.FC = () => {
         </button>
 
         <Link to={`/app/${currentRole}`} className="flex items-center gap-2.5 group">
-          <div className="w-8 h-8 rounded-[10px] bg-indigo-600 flex items-center justify-center text-white shadow-[0_1px_3px_rgba(79,70,229,0.3)] group-hover:bg-indigo-700 transition-colors font-bold text-sm tracking-wider">
+          <div className="w-8 h-8 rounded-[10px] bg-rose-600 flex items-center justify-center text-white shadow-[0_1px_3px_rgba(225,29,72,0.3)] group-hover:bg-rose-700 transition-colors font-bold text-sm tracking-wider">
             OS
           </div>
           <span className="text-base font-bold tracking-tight text-slate-900">CampusOS</span>
@@ -103,7 +103,7 @@ export const Topbar: React.FC = () => {
       <div className="flex items-center gap-2 sm:gap-3">
         {/* Role Badge */}
         <span className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-medium text-slate-700 bg-slate-100 rounded-lg border border-slate-200">
-          <Shield className="w-3 h-3 text-indigo-600" />
+          <Shield className="w-3 h-3 text-rose-600" />
           <span>{roleLabels[currentRole] || 'Campus'}</span>
         </span>
 
@@ -116,7 +116,7 @@ export const Topbar: React.FC = () => {
             aria-label="View notifications"
           >
             <Bell className="w-4 h-4" />
-            <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-indigo-600 ring-2 ring-white" />
+            <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-rose-600 ring-2 ring-white" />
           </button>
 
           {isNotificationOpen && (
@@ -128,7 +128,7 @@ export const Topbar: React.FC = () => {
               <div className="absolute right-0 mt-2 w-80 rounded-xl border border-slate-200 bg-white p-2 shadow-elevated z-40">
                 <div className="flex items-center justify-between px-3 py-2 border-b border-slate-100">
                   <span className="text-xs font-semibold text-slate-900">Notifications</span>
-                  <span className="text-[10px] text-indigo-600 font-medium cursor-pointer hover:underline">
+                  <span className="text-[10px] text-rose-600 font-medium cursor-pointer hover:underline">
                     Mark all read
                   </span>
                 </div>
@@ -141,7 +141,7 @@ export const Topbar: React.FC = () => {
                       <div className="flex items-start justify-between gap-2">
                         <span className="font-semibold text-slate-800">{n.title}</span>
                         {n.unread && (
-                          <span className="w-1.5 h-1.5 rounded-full bg-indigo-600 shrink-0 mt-1" />
+                          <span className="w-1.5 h-1.5 rounded-full bg-rose-600 shrink-0 mt-1" />
                         )}
                       </div>
                       <span className="text-[10px] text-slate-400 mt-1 block">{n.time}</span>
@@ -152,7 +152,7 @@ export const Topbar: React.FC = () => {
                   <Link
                     to={`/app/${currentRole}/notices`}
                     onClick={() => setIsNotificationOpen(false)}
-                    className="text-xs text-indigo-600 font-medium hover:underline inline-flex items-center gap-1"
+                    className="text-xs text-rose-600 font-medium hover:underline inline-flex items-center gap-1"
                   >
                     <span>View all circulars</span>
                     <ExternalLink className="w-3 h-3" />
@@ -183,7 +183,7 @@ export const Topbar: React.FC = () => {
                 <div className="px-3 py-2 border-b border-slate-100">
                   <p className="text-xs font-semibold text-slate-900">{userDisplayName}</p>
                   <p className="text-[11px] text-slate-500 font-mono">{userIdentifier}</p>
-                  <p className="text-[10px] text-indigo-600 font-medium mt-0.5">
+                  <p className="text-[10px] text-rose-600 font-medium mt-0.5">
                     {userDepartment}
                   </p>
                 </div>

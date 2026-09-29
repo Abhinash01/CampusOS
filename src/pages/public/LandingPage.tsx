@@ -34,7 +34,7 @@ export const LandingPage: React.FC = () => {
   }, [])
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] flex flex-col text-slate-900 selection:bg-indigo-100 selection:text-indigo-900 overflow-x-hidden">
+    <div className="min-h-screen bg-[#FFFDFB] flex flex-col text-slate-900 selection:bg-rose-100 selection:text-rose-900 overflow-x-hidden">
       {/* 1. UPGRADED NAVBAR */}
       <header
         className={`sticky top-0 z-40 transition-all duration-200 ${
@@ -46,7 +46,7 @@ export const LandingPage: React.FC = () => {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2.5 group">
-            <div className="w-8 h-8 rounded-[10px] bg-indigo-600 flex items-center justify-center text-white font-bold text-sm shadow-[0_1px_3px_rgba(79,70,229,0.3)] group-hover:bg-indigo-700 transition-colors">
+            <div className="w-8 h-8 rounded-[10px] bg-rose-600 flex items-center justify-center text-white font-bold text-sm shadow-[0_1px_3px_rgba(225,29,72,0.3)] group-hover:bg-rose-700 transition-colors">
               OS
             </div>
             <span className="font-bold text-base tracking-tight text-slate-900">CampusOS</span>
@@ -162,7 +162,7 @@ export const LandingPage: React.FC = () => {
           {/* Subtle Grid Texture */}
           <div className="absolute inset-0 bg-grid-slate radial-mask opacity-60" />
 
-          {/* Primary Indigo/Violet Ambient Glow Orb */}
+          {/* Primary Rose/Orange Warm Ambient Glow Orb */}
           <motion.div
             animate={
               shouldReduceMotion
@@ -177,12 +177,12 @@ export const LandingPage: React.FC = () => {
               repeat: Infinity,
               ease: 'easeInOut',
             }}
-            className="absolute top-10 left-1/2 -translate-x-1/2 w-[540px] sm:w-[720px] h-[360px] bg-gradient-to-tr from-indigo-500/15 via-violet-500/12 to-blue-400/10 rounded-full blur-3xl"
+            className="absolute top-10 left-1/2 -translate-x-1/2 w-[540px] sm:w-[720px] h-[360px] bg-gradient-to-tr from-rose-500/14 via-orange-500/12 to-amber-400/10 rounded-full blur-3xl"
           />
 
           {/* Connected Network Node Motif SVG (Subtle Identity Watermark) */}
           <svg
-            className="absolute top-16 left-1/2 -translate-x-1/2 w-[800px] h-[400px] opacity-[0.14] text-indigo-700 pointer-events-none"
+            className="absolute top-16 left-1/2 -translate-x-1/2 w-[800px] h-[400px] opacity-[0.14] text-rose-700 pointer-events-none"
             viewBox="0 0 800 400"
             fill="none"
             stroke="currentColor"
@@ -205,8 +205,8 @@ export const LandingPage: React.FC = () => {
         <div className="max-w-4xl mx-auto text-center">
           {/* Eyebrow */}
           <FadeIn direction="up" delay={0.05} duration={0.4}>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50/80 border border-indigo-200/60 text-[11px] font-semibold tracking-wider text-indigo-700 uppercase mb-5 shadow-xs">
-              <span className="w-1.5 h-1.5 rounded-full bg-indigo-600 animate-pulse" />
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-50/80 border border-rose-200/60 text-[11px] font-semibold tracking-wider text-rose-700 uppercase mb-5 shadow-xs">
+              <span className="w-1.5 h-1.5 rounded-full bg-rose-600 animate-pulse" />
               <span>THE CAMPUS OPERATING SYSTEM</span>
             </div>
           </FadeIn>
@@ -215,7 +215,7 @@ export const LandingPage: React.FC = () => {
           <FadeIn direction="up" delay={0.12} duration={0.5}>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.08] sm:leading-[1.1]">
               Campus life,{' '}
-              <span className="bg-gradient-to-r from-indigo-600 via-indigo-600 to-violet-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[#E11D48] via-[#E11D48] to-[#F97316] bg-clip-text text-transparent">
                 finally connected.
               </span>
             </h1>
@@ -283,7 +283,7 @@ export const LandingPage: React.FC = () => {
                 <span className="hidden md:inline-block text-[11px] font-medium text-slate-600">
                   Abhinash Sharma
                 </span>
-                <div className="w-6 h-6 rounded-full bg-indigo-100 text-indigo-700 border border-indigo-200 font-semibold text-[10px] flex items-center justify-center">
+                <div className="w-6 h-6 rounded-full bg-rose-100 text-rose-700 border border-rose-200 font-semibold text-[10px] flex items-center justify-center">
                   A
                 </div>
               </div>
@@ -296,10 +296,10 @@ export const LandingPage: React.FC = () => {
                 <div className="px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-slate-400">
                   Workspace
                 </div>
-                <div className="flex items-center gap-2.5 px-2.5 py-1.5 rounded-lg bg-indigo-50 text-indigo-700 font-semibold text-xs border border-indigo-100/60">
-                  <Layers className="w-3.5 h-3.5 text-indigo-600" />
+                <div className="flex items-center gap-2.5 px-2.5 py-1.5 rounded-lg bg-rose-50 text-rose-700 font-semibold text-xs border border-rose-100/60">
+                  <Layers className="w-3.5 h-3.5 text-rose-600" />
                   <span>Overview</span>
-                  <span className="ml-auto w-1.5 h-1.5 rounded-full bg-indigo-600" />
+                  <span className="ml-auto w-1.5 h-1.5 rounded-full bg-rose-600" />
                 </div>
                 <div className="flex items-center gap-2.5 px-2.5 py-1.5 rounded-lg text-slate-600 text-xs hover:bg-slate-50">
                   <CalendarCheck className="w-3.5 h-3.5 text-slate-400" />
@@ -356,7 +356,7 @@ export const LandingPage: React.FC = () => {
                   <div className="bg-white p-3.5 rounded-xl border border-slate-200/80 shadow-2xs">
                     <div className="flex items-center justify-between text-xs text-slate-500">
                       <span className="font-semibold uppercase text-[10px] tracking-wider">Attendance</span>
-                      <CalendarCheck className="w-3.5 h-3.5 text-indigo-600" />
+                      <CalendarCheck className="w-3.5 h-3.5 text-rose-600" />
                     </div>
                     <div className="mt-1.5 text-xl font-bold text-slate-900 tnum">86.4%</div>
                     <div className="mt-1 flex items-center gap-1 text-[11px] text-emerald-600 font-medium">
@@ -370,7 +370,7 @@ export const LandingPage: React.FC = () => {
                   <div className="bg-white p-3.5 rounded-xl border border-slate-200/80 shadow-2xs">
                     <div className="flex items-center justify-between text-xs text-slate-500">
                       <span className="font-semibold uppercase text-[10px] tracking-wider">Active Requests</span>
-                      <FileCheck2 className="w-3.5 h-3.5 text-indigo-600" />
+                      <FileCheck2 className="w-3.5 h-3.5 text-rose-600" />
                     </div>
                     <div className="mt-1.5 text-xl font-bold text-slate-900 tnum">2 in progress</div>
                     <div className="mt-1 text-[11px] text-slate-500">
@@ -385,13 +385,13 @@ export const LandingPage: React.FC = () => {
                   <div className="bg-white p-3.5 rounded-xl border border-slate-200/80 shadow-2xs">
                     <div className="flex items-center justify-between text-xs text-slate-500">
                       <span className="font-semibold uppercase text-[10px] tracking-wider">Dining & Hostel</span>
-                      <Utensils className="w-3.5 h-3.5 text-indigo-600" />
+                      <Utensils className="w-3.5 h-3.5 text-rose-600" />
                     </div>
                     <div className="mt-1.5 text-xl font-bold text-slate-900">Block B</div>
                     <div className="mt-1 text-[11px] text-slate-500">
                       <span>Dinner: 7:30 PM — 9:30 PM</span>
                     </div>
-                    <div className="mt-2 text-[10px] font-medium text-indigo-700 bg-indigo-50 px-2 py-0.5 rounded inline-block">
+                    <div className="mt-2 text-[10px] font-medium text-rose-700 bg-rose-50 px-2 py-0.5 rounded inline-block">
                       Curfew: 10:00 PM
                     </div>
                   </div>
@@ -406,7 +406,7 @@ export const LandingPage: React.FC = () => {
                   <div className="mt-2.5 space-y-2">
                     <div className="flex items-start justify-between text-xs py-1">
                       <div className="flex items-center gap-2">
-                        <span className="w-2 h-2 rounded-full bg-indigo-600 shrink-0" />
+                        <span className="w-2 h-2 rounded-full bg-rose-600 shrink-0" />
                         <span className="font-medium text-slate-800">Hostel Repair #1042</span>
                         <span className="text-slate-400 text-[11px]">— Technician Manoj dispatched</span>
                       </div>
@@ -431,7 +431,7 @@ export const LandingPage: React.FC = () => {
       {/* 4. PRODUCT VALUE SECTION ("Everything campus, in one place.") */}
       <section id="features" className="py-16 sm:py-24 px-4 sm:px-6 max-w-6xl mx-auto w-full">
         <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-indigo-50 border border-indigo-200/60 text-[11px] font-semibold text-indigo-700 uppercase tracking-wider mb-2.5">
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-rose-50 border border-rose-200/60 text-[11px] font-semibold text-rose-700 uppercase tracking-wider mb-2.5">
             CAPABILITIES
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
@@ -446,9 +446,9 @@ export const LandingPage: React.FC = () => {
         <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {/* Card 1: Attendance */}
           <StaggerItem>
-            <Card className="p-6 border-slate-200/90 hover:border-indigo-300 hover:shadow-card transition-all duration-200 h-full flex flex-col justify-between group">
+            <Card className="p-6 border-slate-200/90 hover:border-rose-300 hover:shadow-card transition-all duration-200 h-full flex flex-col justify-between group">
               <div>
-                <div className="w-10 h-10 rounded-xl bg-indigo-50 border border-indigo-100/80 text-indigo-600 flex items-center justify-center mb-4 group-hover:scale-105 transition-transform duration-200">
+                <div className="w-10 h-10 rounded-xl bg-rose-50 border border-rose-100/80 text-rose-600 flex items-center justify-center mb-4 group-hover:scale-105 transition-transform duration-200">
                   <CalendarCheck className="w-5 h-5" />
                 </div>
                 <h3 className="text-base font-bold text-slate-900 tracking-tight">Attendance</h3>
@@ -461,10 +461,10 @@ export const LandingPage: React.FC = () => {
               <div className="mt-5 p-3 rounded-lg bg-slate-50 border border-slate-100 space-y-2">
                 <div className="flex items-center justify-between text-xs">
                   <span className="font-medium text-slate-700">Overall Percentage</span>
-                  <span className="font-bold text-indigo-700 tnum">86.4%</span>
+                  <span className="font-bold text-rose-700 tnum">86.4%</span>
                 </div>
                 <div className="w-full bg-slate-200/70 rounded-full h-1.5 overflow-hidden">
-                  <div className="bg-indigo-600 h-1.5 rounded-full" style={{ width: '86.4%' }} />
+                  <div className="bg-rose-600 h-1.5 rounded-full" style={{ width: '86.4%' }} />
                 </div>
                 <div className="flex items-center justify-between text-[10px] text-slate-500">
                   <span>Threshold: 75%</span>
@@ -476,9 +476,9 @@ export const LandingPage: React.FC = () => {
 
           {/* Card 2: Requests */}
           <StaggerItem>
-            <Card className="p-6 border-slate-200/90 hover:border-indigo-300 hover:shadow-card transition-all duration-200 h-full flex flex-col justify-between group">
+            <Card className="p-6 border-slate-200/90 hover:border-rose-300 hover:shadow-card transition-all duration-200 h-full flex flex-col justify-between group">
               <div>
-                <div className="w-10 h-10 rounded-xl bg-indigo-50 border border-indigo-100/80 text-indigo-600 flex items-center justify-center mb-4 group-hover:scale-105 transition-transform duration-200">
+                <div className="w-10 h-10 rounded-xl bg-rose-50 border border-rose-100/80 text-rose-600 flex items-center justify-center mb-4 group-hover:scale-105 transition-transform duration-200">
                   <FileCheck2 className="w-5 h-5" />
                 </div>
                 <h3 className="text-base font-bold text-slate-900 tracking-tight">Requests</h3>
@@ -496,7 +496,7 @@ export const LandingPage: React.FC = () => {
                   </span>
                 </div>
                 <div className="flex items-center gap-1.5 text-[10px] text-slate-500 pt-0.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-indigo-600" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-rose-600" />
                   <span>Signed by Dean • Ready for download today</span>
                 </div>
               </div>
@@ -505,9 +505,9 @@ export const LandingPage: React.FC = () => {
 
           {/* Card 3: Hostel */}
           <StaggerItem>
-            <Card className="p-6 border-slate-200/90 hover:border-indigo-300 hover:shadow-card transition-all duration-200 h-full flex flex-col justify-between group">
+            <Card className="p-6 border-slate-200/90 hover:border-rose-300 hover:shadow-card transition-all duration-200 h-full flex flex-col justify-between group">
               <div>
-                <div className="w-10 h-10 rounded-xl bg-indigo-50 border border-indigo-100/80 text-indigo-600 flex items-center justify-center mb-4 group-hover:scale-105 transition-transform duration-200">
+                <div className="w-10 h-10 rounded-xl bg-rose-50 border border-rose-100/80 text-rose-600 flex items-center justify-center mb-4 group-hover:scale-105 transition-transform duration-200">
                   <Home className="w-5 h-5" />
                 </div>
                 <h3 className="text-base font-bold text-slate-900 tracking-tight">Hostel</h3>
@@ -534,9 +534,9 @@ export const LandingPage: React.FC = () => {
 
           {/* Card 4: Mess */}
           <StaggerItem>
-            <Card className="p-6 border-slate-200/90 hover:border-indigo-300 hover:shadow-card transition-all duration-200 h-full flex flex-col justify-between group">
+            <Card className="p-6 border-slate-200/90 hover:border-rose-300 hover:shadow-card transition-all duration-200 h-full flex flex-col justify-between group">
               <div>
-                <div className="w-10 h-10 rounded-xl bg-indigo-50 border border-indigo-100/80 text-indigo-600 flex items-center justify-center mb-4 group-hover:scale-105 transition-transform duration-200">
+                <div className="w-10 h-10 rounded-xl bg-rose-50 border border-rose-100/80 text-rose-600 flex items-center justify-center mb-4 group-hover:scale-105 transition-transform duration-200">
                   <Utensils className="w-5 h-5" />
                 </div>
                 <h3 className="text-base font-bold text-slate-900 tracking-tight">Mess</h3>
@@ -549,7 +549,7 @@ export const LandingPage: React.FC = () => {
               <div className="mt-5 p-3 rounded-lg bg-slate-50 border border-slate-100 space-y-1.5">
                 <div className="flex items-center justify-between text-xs">
                   <span className="font-semibold text-slate-800">Today's Lunch Menu</span>
-                  <span className="text-[10px] font-bold text-indigo-700">4.6 ★</span>
+                  <span className="text-[10px] font-bold text-rose-700">4.6 ★</span>
                 </div>
                 <p className="text-[11px] text-slate-600 truncate">
                   Paneer Butter Masala, Dal Tadka, Jeera Rice
@@ -560,9 +560,9 @@ export const LandingPage: React.FC = () => {
 
           {/* Card 5: Notices */}
           <StaggerItem>
-            <Card className="p-6 border-slate-200/90 hover:border-indigo-300 hover:shadow-card transition-all duration-200 h-full flex flex-col justify-between group">
+            <Card className="p-6 border-slate-200/90 hover:border-rose-300 hover:shadow-card transition-all duration-200 h-full flex flex-col justify-between group">
               <div>
-                <div className="w-10 h-10 rounded-xl bg-indigo-50 border border-indigo-100/80 text-indigo-600 flex items-center justify-center mb-4 group-hover:scale-105 transition-transform duration-200">
+                <div className="w-10 h-10 rounded-xl bg-rose-50 border border-rose-100/80 text-rose-600 flex items-center justify-center mb-4 group-hover:scale-105 transition-transform duration-200">
                   <Bell className="w-5 h-5" />
                 </div>
                 <h3 className="text-base font-bold text-slate-900 tracking-tight">Notices</h3>
@@ -586,9 +586,9 @@ export const LandingPage: React.FC = () => {
 
           {/* Card 6: Support */}
           <StaggerItem>
-            <Card className="p-6 border-slate-200/90 hover:border-indigo-300 hover:shadow-card transition-all duration-200 h-full flex flex-col justify-between group">
+            <Card className="p-6 border-slate-200/90 hover:border-rose-300 hover:shadow-card transition-all duration-200 h-full flex flex-col justify-between group">
               <div>
-                <div className="w-10 h-10 rounded-xl bg-indigo-50 border border-indigo-100/80 text-indigo-600 flex items-center justify-center mb-4 group-hover:scale-105 transition-transform duration-200">
+                <div className="w-10 h-10 rounded-xl bg-rose-50 border border-rose-100/80 text-rose-600 flex items-center justify-center mb-4 group-hover:scale-105 transition-transform duration-200">
                   <HelpCircle className="w-5 h-5" />
                 </div>
                 <h3 className="text-base font-bold text-slate-900 tracking-tight">Support</h3>
@@ -601,7 +601,7 @@ export const LandingPage: React.FC = () => {
               <div className="mt-5 p-3 rounded-lg bg-slate-50 border border-slate-100 space-y-1.5">
                 <div className="flex items-center justify-between text-xs">
                   <span className="font-semibold text-slate-800">Technician Assigned</span>
-                  <span className="text-[10px] text-indigo-600 font-mono">OTP 4829</span>
+                  <span className="text-[10px] text-rose-600 font-mono">OTP 4829</span>
                 </div>
                 <p className="text-[11px] text-slate-500">
                   Direct contact with on-duty warden & facilities team
@@ -616,7 +616,7 @@ export const LandingPage: React.FC = () => {
       <section id="how-it-works" className="py-16 sm:py-24 bg-white border-y border-slate-200/80 px-4 sm:px-6">
         <div className="max-w-5xl mx-auto">
           <div className="text-center max-w-2xl mx-auto mb-14 sm:mb-16">
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-indigo-50 border border-indigo-200/60 text-[11px] font-semibold text-indigo-700 uppercase tracking-wider mb-2.5">
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-rose-50 border border-rose-200/60 text-[11px] font-semibold text-rose-700 uppercase tracking-wider mb-2.5">
               WORKFLOW
             </div>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
@@ -634,7 +634,7 @@ export const LandingPage: React.FC = () => {
 
             {/* Step 1 */}
             <div className="flex flex-col items-center text-center relative z-10 space-y-3">
-              <div className="w-12 h-12 rounded-xl bg-white border-2 border-indigo-600 text-indigo-600 flex items-center justify-center font-bold text-sm shadow-xs">
+              <div className="w-12 h-12 rounded-xl bg-white border-2 border-rose-600 text-rose-600 flex items-center justify-center font-bold text-sm shadow-xs">
                 1
               </div>
               <h4 className="text-xs sm:text-sm font-bold text-slate-900">You need something</h4>
@@ -645,7 +645,7 @@ export const LandingPage: React.FC = () => {
 
             {/* Step 2 */}
             <div className="flex flex-col items-center text-center relative z-10 space-y-3">
-              <div className="w-12 h-12 rounded-xl bg-white border-2 border-indigo-600 text-indigo-600 flex items-center justify-center font-bold text-sm shadow-xs">
+              <div className="w-12 h-12 rounded-xl bg-white border-2 border-rose-600 text-rose-600 flex items-center justify-center font-bold text-sm shadow-xs">
                 2
               </div>
               <h4 className="text-xs sm:text-sm font-bold text-slate-900">CampusOS routes it</h4>
@@ -656,7 +656,7 @@ export const LandingPage: React.FC = () => {
 
             {/* Step 3 */}
             <div className="flex flex-col items-center text-center relative z-10 space-y-3">
-              <div className="w-12 h-12 rounded-xl bg-white border-2 border-indigo-600 text-indigo-600 flex items-center justify-center font-bold text-sm shadow-xs">
+              <div className="w-12 h-12 rounded-xl bg-white border-2 border-rose-600 text-rose-600 flex items-center justify-center font-bold text-sm shadow-xs">
                 3
               </div>
               <h4 className="text-xs sm:text-sm font-bold text-slate-900">The right team acts</h4>
@@ -667,7 +667,7 @@ export const LandingPage: React.FC = () => {
 
             {/* Step 4 */}
             <div className="flex flex-col items-center text-center relative z-10 space-y-3">
-              <div className="w-12 h-12 rounded-xl bg-white border-2 border-indigo-600 text-indigo-600 flex items-center justify-center font-bold text-sm shadow-xs">
+              <div className="w-12 h-12 rounded-xl bg-white border-2 border-rose-600 text-rose-600 flex items-center justify-center font-bold text-sm shadow-xs">
                 4
               </div>
               <h4 className="text-xs sm:text-sm font-bold text-slate-900">You get updates</h4>
@@ -678,7 +678,7 @@ export const LandingPage: React.FC = () => {
 
             {/* Step 5 */}
             <div className="flex flex-col items-center text-center relative z-10 space-y-3">
-              <div className="w-12 h-12 rounded-xl bg-indigo-600 border-2 border-indigo-600 text-white flex items-center justify-center font-bold text-sm shadow-sm">
+              <div className="w-12 h-12 rounded-xl bg-rose-600 border-2 border-rose-600 text-white flex items-center justify-center font-bold text-sm shadow-sm">
                 <CheckCircle2 className="w-5 h-5" />
               </div>
               <h4 className="text-xs sm:text-sm font-bold text-slate-900">Issue resolved</h4>
@@ -693,7 +693,7 @@ export const LandingPage: React.FC = () => {
       {/* 6. REAL OPERATIONAL FLOW ("From request to resolution") */}
       <section id="operational-flow" className="py-16 sm:py-24 px-4 sm:px-6 max-w-4xl mx-auto w-full">
         <div className="text-center max-w-2xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-indigo-50 border border-indigo-200/60 text-[11px] font-semibold text-indigo-700 uppercase tracking-wider mb-2.5">
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-rose-50 border border-rose-200/60 text-[11px] font-semibold text-rose-700 uppercase tracking-wider mb-2.5">
             OPERATIONAL TRACEABILITY
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
@@ -709,7 +709,7 @@ export const LandingPage: React.FC = () => {
           <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-slate-100 gap-3">
             <div>
               <div className="flex items-center gap-2">
-                <span className="font-mono text-xs font-semibold text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded border border-indigo-100">
+                <span className="font-mono text-xs font-semibold text-rose-600 bg-rose-50 px-2 py-0.5 rounded border border-rose-100">
                   Ticket #1042
                 </span>
                 <h3 className="text-base font-bold text-slate-900">Hostel Maintenance Request</h3>
@@ -804,10 +804,10 @@ export const LandingPage: React.FC = () => {
         </Card>
       </section>
 
-      {/* 7. FINAL CONTRAST CTA SECTION (Deep Indigo/Dark Theme) */}
-      <section className="py-20 px-4 sm:px-6 bg-gradient-to-b from-slate-900 via-slate-900 to-indigo-950 text-white relative overflow-hidden">
+      {/* 7. FINAL CONTRAST CTA SECTION (Deep Charcoal/Rose-tinted Theme) */}
+      <section className="py-20 px-4 sm:px-6 bg-gradient-to-b from-zinc-950 via-zinc-900 to-rose-950 text-white relative overflow-hidden">
         {/* Subtle Ambient Radial Highlight */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-indigo-500/15 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-rose-500/15 rounded-full blur-3xl pointer-events-none" />
 
         <div className="max-w-3xl mx-auto text-center relative z-10 space-y-5">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">
@@ -841,7 +841,7 @@ export const LandingPage: React.FC = () => {
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
           <div className="flex flex-col sm:flex-row items-center gap-3 text-center sm:text-left">
             <div className="flex items-center gap-2">
-              <div className="w-6 h-6 rounded-md bg-indigo-600 flex items-center justify-center text-white font-bold text-xs">
+              <div className="w-6 h-6 rounded-md bg-rose-600 flex items-center justify-center text-white font-bold text-xs">
                 OS
               </div>
               <span className="font-bold text-slate-900 text-sm">CampusOS</span>

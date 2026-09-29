@@ -115,9 +115,9 @@ export const StudentDashboard: React.FC = () => {
               </Link>
             </CardHeader>
             <CardContent className="space-y-3 p-4">
-              <div className="flex items-center justify-between p-3.5 rounded-lg border border-indigo-100 bg-indigo-50/40">
+              <div className="flex items-center justify-between p-3.5 rounded-lg border border-rose-100 bg-rose-50/40">
                 <div className="flex items-start gap-3">
-                  <div className="w-9 h-9 rounded-lg bg-indigo-600 text-white flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">
+                  <div className="w-9 h-9 rounded-lg bg-rose-600 text-white flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">
                     CS
                   </div>
                   <div>
@@ -133,7 +133,7 @@ export const StudentDashboard: React.FC = () => {
                     </p>
                   </div>
                 </div>
-                <span className="text-xs font-mono font-medium text-indigo-700 bg-indigo-100 px-2.5 py-1 rounded-md">
+                <span className="text-xs font-mono font-medium text-rose-700 bg-rose-100 px-2.5 py-1 rounded-md">
                   10:30 AM
                 </span>
               </div>
@@ -262,13 +262,13 @@ export const StudentDashboard: React.FC = () => {
             <CardHeader className="py-4">
               <div className="flex items-center justify-between">
                 <CardTitle>Official Notices</CardTitle>
-                <span className="text-[11px] text-indigo-600 font-semibold cursor-pointer">
+                <span className="text-[11px] text-rose-600 font-semibold cursor-pointer">
                   2 unread
                 </span>
               </div>
             </CardHeader>
             <CardContent className="space-y-3 pt-0 text-xs">
-              <div className="p-3 rounded-lg border-l-2 border-indigo-600 bg-indigo-50/30">
+              <div className="p-3 rounded-lg border-l-2 border-rose-600 bg-rose-50/30">
                 <div className="flex items-center justify-between text-[11px] text-slate-400 mb-1">
                   <span>Dean Academic</span>
                   <span>Today, 09:15 AM</span>

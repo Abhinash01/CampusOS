@@ -1,88 +1,16 @@
-import type { ThemeConfig, ThemeId } from './theme.types'
+import type { ThemeConfig } from './theme.types'
 
-export const THEME_TEAL: ThemeConfig = {
-  id: 'teal',
-  code: 'THEME A',
-  name: 'Campus Teal',
-  concept: 'Connected • Modern • Trustworthy',
-  description: 'Calm, architectural, and sophisticated. Distinctly differentiates CampusOS from ubiquitous purple/indigo SaaS templates.',
-  colors: {
-    primary: '#0F766E',
-    primaryHover: '#115E59',
-    secondary: '#14B8A6',
-    accent: '#06B6D4',
-    softAccent: '#CCFBF1',
-    background: '#F8FAFC',
-    surface: '#FFFFFF',
-    text: '#0F172A',
-    textSecondary: '#64748B',
-    border: '#E2E8F0',
-    heroGlowFrom: 'rgba(15, 118, 110, 0.16)',
-    heroGlowTo: 'rgba(6, 182, 212, 0.12)',
-    headlineGradient: 'from-teal-700 via-teal-600 to-cyan-600',
-    badgeBg: '#F0FDFA',
-    badgeText: '#0F766E',
-    badgeBorder: '#99F6E4',
-    activeNavBg: '#F0FDFA',
-    activeNavText: '#0F766E',
-    darkCtaBg: 'from-slate-900 via-slate-900 to-teal-950',
-    ringColor: 'rgba(15, 118, 110, 0.35)',
-  },
-  characteristics: {
-    primaryColor: '#0F766E (Teal 700)',
-    primaryContrast: '7.8:1 on white (WCAG AAA compliant)',
-    heroAppearance: 'Deep forest-cyan aura with organic, calm clarity',
-    dashboardAppearance: 'Grounded, academic, and clinical precision',
-    buttonAppearance: 'Subdued yet authoritative emerald-teal with deep hover',
-    navigationAppearance: 'Crisp mint-emerald active indicator with slate body',
-    accessibility: 'Exceptional text-to-surface contrast across all scales',
-    overallVisualCharacter: 'Trustworthy institutional operations with a modern ecological feel',
-  },
-}
-
-export const THEME_BLUE: ThemeConfig = {
-  id: 'blue',
-  code: 'THEME B',
-  name: 'Campus Blue',
-  concept: 'Reliable • Digital • Institutional',
-  description: 'High-clarity technical blue with digital sky accents. Conveys deep operational stability and university authority.',
-  colors: {
-    primary: '#2563EB',
-    primaryHover: '#1D4ED8',
-    secondary: '#0EA5E9',
-    accent: '#06B6D4',
-    softAccent: '#DBEAFE',
-    background: '#F8FAFC',
-    surface: '#FFFFFF',
-    text: '#0F172A',
-    textSecondary: '#64748B',
-    border: '#E2E8F0',
-    heroGlowFrom: 'rgba(37, 99, 235, 0.16)',
-    heroGlowTo: 'rgba(14, 165, 233, 0.12)',
-    headlineGradient: 'from-blue-600 via-blue-600 to-sky-500',
-    badgeBg: '#EFF6FF',
-    badgeText: '#1D4ED8',
-    badgeBorder: '#BFDBFE',
-    activeNavBg: '#EFF6FF',
-    activeNavText: '#1D4ED8',
-    darkCtaBg: 'from-slate-900 via-slate-900 to-blue-950',
-    ringColor: 'rgba(37, 99, 235, 0.35)',
-  },
-  characteristics: {
-    primaryColor: '#2563EB (Blue 600)',
-    primaryContrast: '5.1:1 on white (WCAG AA compliant)',
-    heroAppearance: 'Crisp technical atmosphere with radiant sky-blue light',
-    dashboardAppearance: 'Clean operational cockpit reminiscent of enterprise cloud platforms',
-    buttonAppearance: 'High-visibility digital cobalt with vibrant click response',
-    navigationAppearance: 'Classic university blue indicator with sharp definition',
-    accessibility: 'Reliable contrast; well-understood cognitive semantics for actions',
-    overallVisualCharacter: 'Sharp, digital infrastructure and high-velocity reliability',
-  },
-}
-
-export const THEME_CORAL: ThemeConfig = {
+/**
+ * Official CampusOS Production Theme: Campus Coral
+ * Primary: #E11D48 (Rose 600)
+ * Primary Hover: #BE123C (Rose 700)
+ * Secondary: #F97316 (Orange 500)
+ * Accent: #F59E0B (Amber 500)
+ * Soft Accent: #FFE4E6 (Rose 100)
+ */
+export const CAMPUS_CORAL_THEME: ThemeConfig = {
   id: 'coral',
-  code: 'THEME C',
+  code: 'PRODUCTION',
   name: 'Campus Coral',
   concept: 'Energetic • Human • Modern',
   description: 'Warm rose-coral with gentle amber undercurrents on a tailored soft canvas. Puts student humanity and warmth at the center.',
@@ -120,10 +48,5 @@ export const THEME_CORAL: ThemeConfig = {
   },
 }
 
-export const THEMES: Record<ThemeId, ThemeConfig> = {
-  teal: THEME_TEAL,
-  blue: THEME_BLUE,
-  coral: THEME_CORAL,
-}
-
-export const THEME_LIST = [THEME_TEAL, THEME_BLUE, THEME_CORAL]
+export const THEME_CORAL = CAMPUS_CORAL_THEME
+export const PRODUCTION_THEME = CAMPUS_CORAL_THEME

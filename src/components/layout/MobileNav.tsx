@@ -110,14 +110,14 @@ export const MobileNav: React.FC = () => {
                 className={cn(
                   'flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-colors',
                   isActive
-                    ? 'bg-indigo-50 text-indigo-700 font-semibold'
+                    ? 'bg-rose-50 text-rose-700 font-semibold'
                     : 'text-slate-700 hover:bg-slate-50'
                 )}
               >
                 <Icon
                   className={cn(
                     'w-5 h-5 shrink-0',
-                    isActive ? 'text-indigo-600' : 'text-slate-400'
+                    isActive ? 'text-rose-600' : 'text-slate-400'
                   )}
                 />
                 <span>{item.name}</span>
@@ -142,11 +142,11 @@ export const MobileNav: React.FC = () => {
               to={item.href}
               className={cn(
                 'flex flex-col items-center justify-center py-1 px-2 rounded-lg text-[10px] font-medium transition-colors flex-1 min-w-0',
-                isActive ? 'text-indigo-600 font-semibold' : 'text-slate-500 hover:text-slate-800'
+                isActive ? 'text-rose-600 font-semibold' : 'text-slate-500 hover:text-slate-800'
               )}
             >
               <Icon
-                className={cn('w-5 h-5 mb-0.5 shrink-0', isActive ? 'text-indigo-600' : 'text-slate-400')}
+                className={cn('w-5 h-5 mb-0.5 shrink-0', isActive ? 'text-rose-600' : 'text-slate-400')}
               />
               <span className="truncate w-full text-center">{item.name}</span>
             </NavLink>

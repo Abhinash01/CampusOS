@@ -37,15 +37,15 @@ export const ForgotPasswordPage: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8 selection:bg-indigo-100 selection:text-indigo-900 relative overflow-hidden">
+    <div className="min-h-screen bg-[#FFFDFB] flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8 selection:bg-rose-100 selection:text-rose-900 relative overflow-hidden">
       {/* Ambient background decoration */}
       <div className="absolute inset-0 bg-grid-slate radial-mask opacity-60 pointer-events-none -z-10" />
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none -z-10" />
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-96 h-96 bg-rose-500/10 rounded-full blur-3xl pointer-events-none -z-10" />
 
       <FadeIn direction="up">
         <div className="sm:mx-auto sm:w-full sm:max-w-md text-center">
           <Link to="/" className="inline-flex items-center gap-2.5 group mb-2">
-            <div className="w-9 h-9 rounded-[10px] bg-indigo-600 flex items-center justify-center text-white font-bold text-sm shadow-[0_1px_3px_rgba(79,70,229,0.3)] group-hover:bg-indigo-700 transition-colors">
+            <div className="w-9 h-9 rounded-[10px] bg-rose-600 flex items-center justify-center text-white font-bold text-sm shadow-[0_1px_3px_rgba(225,29,72,0.3)] group-hover:bg-rose-700 transition-colors">
               <KeyRound className="w-4 h-4" />
             </div>
             <span className="text-xl font-bold tracking-tight text-slate-900">CampusOS</span>
@@ -109,9 +109,9 @@ export const ForgotPasswordPage: React.FC = () => {
                 </div>
 
                 {successData.resetToken && (
-                  <div className="p-3.5 rounded-lg bg-indigo-50/70 border border-indigo-100 text-left text-xs space-y-2">
-                    <p className="font-semibold text-indigo-950">Development Environment Notice</p>
-                    <p className="text-indigo-800">
+                  <div className="p-3.5 rounded-lg bg-rose-50/70 border border-rose-100 text-left text-xs space-y-2">
+                    <p className="font-semibold text-rose-950">Development Environment Notice</p>
+                    <p className="text-rose-800">
                       Reset token generated safely. You can proceed directly to complete the password reset:
                     </p>
                     <Button
@@ -143,7 +143,7 @@ export const ForgotPasswordPage: React.FC = () => {
             <div className="mt-6 pt-4 border-t border-slate-100 text-center">
               <Link
                 to="/login"
-                className="inline-flex items-center gap-1.5 text-xs font-semibold text-indigo-600 hover:text-indigo-700 hover:underline"
+                className="inline-flex items-center gap-1.5 text-xs font-semibold text-rose-600 hover:text-rose-700 hover:underline"
               >
                 <ArrowLeft className="w-3.5 h-3.5" />
                 <span>Return to sign in</span>

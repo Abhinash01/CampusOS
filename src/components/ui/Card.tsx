@@ -84,7 +84,7 @@ export const MetricCard: React.FC<MetricCardProps> = ({
       <div className="flex items-center justify-between text-slate-500">
         <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">{title}</span>
         {Icon && (
-          <div className="w-8 h-8 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center shrink-0">
+          <div className="w-8 h-8 rounded-lg bg-rose-50 text-rose-600 flex items-center justify-center shrink-0">
             <Icon className="w-4 h-4" />
           </div>
         )}
