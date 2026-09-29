@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Search, ArrowRight, LayoutDashboard, FileText, Bell, Shield, BookOpen, Layers } from 'lucide-react'
+import { Search, ArrowRight, LayoutDashboard, FileText, Bell, Shield, Home, CalendarCheck, Utensils } from 'lucide-react'
 import { Modal } from '@/components/ui/Modal'
 import { useAppStore } from '@/stores/appStore'
 
@@ -23,15 +23,12 @@ export const SearchModal: React.FC = () => {
 
   const quickLinks = [
     { title: 'Student Dashboard', path: '/app/student', icon: LayoutDashboard, category: 'Navigation' },
-    { title: 'Administrator Command', path: '/app/admin', icon: Shield, category: 'Navigation' },
-    { title: 'Hostel Warden Portal', path: '/app/warden', icon: LayoutDashboard, category: 'Navigation' },
-    { title: 'Maintenance Staff Portal', path: '/app/staff', icon: LayoutDashboard, category: 'Navigation' },
-    { title: 'Design System & Tokens', path: '/design-system', icon: Layers, category: 'Developer' },
-    { title: 'Attendance Module (Phase 2)', path: '/app/student/attendance', icon: FileText, category: 'Student Life' },
-    { title: 'Hostel Complaints (Phase 3)', path: '/app/student/complaints', icon: FileText, category: 'Operations' },
-    { title: 'Gate Pass Hub (Phase 3)', path: '/app/student/gate-pass', icon: FileText, category: 'Security' },
-    { title: 'Campus Notices (Phase 2)', path: '/app/student/notices', icon: Bell, category: 'Communication' },
-    { title: 'System Architecture (Docs)', path: '/docs/ARCHITECTURE.md', icon: BookOpen, category: 'Documentation' },
+    { title: 'Academic Attendance', path: '/app/student/attendance', icon: CalendarCheck, category: 'Academics' },
+    { title: 'Student Requests', path: '/app/student/requests', icon: FileText, category: 'Operations' },
+    { title: 'Hostel Living & Services', path: '/app/student/hostel', icon: Home, category: 'Accommodation' },
+    { title: 'Mess & Dining Menu', path: '/app/student/mess', icon: Utensils, category: 'Dining' },
+    { title: 'Campus Notices & Circulars', path: '/app/student/notices', icon: Bell, category: 'Communication' },
+    { title: 'Administrator Command', path: '/app/admin', icon: Shield, category: 'Operations' },
   ]
 
   const filteredLinks = quickLinks.filter((item) =>
@@ -54,15 +51,15 @@ export const SearchModal: React.FC = () => {
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search campus modules, actions, or routes..."
+            placeholder="Search campus modules or shortcuts..."
             className="w-full pl-10 pr-4 py-2.5 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600 transition-all placeholder:text-slate-400"
             autoFocus
           />
         </div>
 
         <div className="max-h-72 overflow-y-auto space-y-1">
-          <div className="text-[11px] font-semibold uppercase tracking-wider text-slate-400 px-2 py-1">
-            Suggested Navigation
+          <div className="text-[10px] font-semibold uppercase tracking-wider text-slate-400 px-2 py-1">
+            Navigation Shortcuts
           </div>
           {filteredLinks.length === 0 ? (
             <div className="p-4 text-center text-xs text-slate-500">
@@ -76,7 +73,7 @@ export const SearchModal: React.FC = () => {
                   key={idx}
                   type="button"
                   onClick={() => handleSelect(item.path)}
-                  className="w-full flex items-center justify-between p-2.5 rounded-lg hover:bg-slate-100 text-left transition-colors group"
+                  className="w-full flex items-center justify-between p-2.5 rounded-lg hover:bg-slate-50 text-left transition-colors group"
                 >
                   <div className="flex items-center gap-3">
                     <div className="w-7 h-7 rounded-lg bg-slate-100 group-hover:bg-white flex items-center justify-center text-slate-600 border border-slate-200">

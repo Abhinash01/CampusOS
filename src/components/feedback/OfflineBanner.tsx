@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { WifiOff } from 'lucide-react'
-import { useAppStore } from '@/stores/appStore'
 
 export const OfflineBanner: React.FC = () => {
-  const [isBrowserOffline, setIsBrowserOffline] = useState(!navigator.onLine)
-  const isSimulatedOffline = useAppStore((state) => state.isOfflineSimulated)
+  const [isOffline, setIsOffline] = useState(!navigator.onLine)
 
   useEffect(() => {
-    const handleOnline = () => setIsBrowserOffline(false)
-    const handleOffline = () => setIsBrowserOffline(true)
+    const handleOnline = () => setIsOffline(false)
+    const handleOffline = () => setIsOffline(true)
 
     window.addEventListener('online', handleOnline)
     window.addEventListener('offline', handleOffline)
@@ -18,8 +16,6 @@ export const OfflineBanner: React.FC = () => {
       window.removeEventListener('offline', handleOffline)
     }
   }, [])
-
-  const isOffline = isBrowserOffline || isSimulatedOffline
 
   return (
     <AnimatePresence>
@@ -34,12 +30,7 @@ export const OfflineBanner: React.FC = () => {
           aria-live="polite"
         >
           <WifiOff className="w-3.5 h-3.5 shrink-0" />
-          <span>You&apos;re currently offline. Some live information may be unavailable.</span>
-          {isSimulatedOffline && (
-            <span className="text-[10px] bg-amber-700/60 px-1.5 py-0.5 rounded font-mono">
-              Simulated Mode
-            </span>
-          )}
+          <span>You are currently offline. Check your network connection.</span>
         </motion.div>
       )}
     </AnimatePresence>

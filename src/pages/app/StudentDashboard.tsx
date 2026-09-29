@@ -14,8 +14,13 @@ import { Badge } from '@/components/ui/Badge'
 import { Button } from '@/components/ui/Button'
 import { StaggerContainer, StaggerItem } from '@/components/motion/StaggerContainer'
 import { FadeIn } from '@/components/motion/FadeIn'
+import { useAuthStore } from '@/features/auth'
 
 export const StudentDashboard: React.FC = () => {
+  const user = useAuthStore((state) => state.user)
+  const displayName = user?.name || 'Student'
+  const displayId = user?.studentId || '2201004128'
+
   return (
     <div className="space-y-6">
       {/* Top Banner / Welcome Identity */}
@@ -24,14 +29,14 @@ export const StudentDashboard: React.FC = () => {
           <div>
             <div className="flex items-center gap-2">
               <h1 className="text-xl font-bold tracking-tight text-slate-900">
-                Welcome back, Aarav
+                Welcome back, {displayName}
               </h1>
               <Badge variant="success" withDot>
                 Active Resident
               </Badge>
             </div>
             <p className="text-xs text-slate-500 mt-1">
-              Roll No: <span className="font-mono font-medium text-slate-700">2201004128</span> •
+              Roll No: <span className="font-mono font-medium text-slate-700">{displayId}</span> •
               B.Tech Computer Science (Sem 6) • Hostel Block B, Room 204
             </p>
           </div>

@@ -55,7 +55,7 @@ export const AdminDashboard: React.FC = () => {
               <Badge variant="info">Semester Spring 2026</Badge>
             </div>
             <p className="text-xs text-slate-500 mt-1">
-              Active campus overview • 4,820 Students enrolled • 18 Buildings monitored
+              Centralized administrative controls and campus operations management.
             </p>
           </div>
 

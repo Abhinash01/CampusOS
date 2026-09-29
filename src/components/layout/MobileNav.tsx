@@ -3,14 +3,16 @@ import { NavLink, useLocation } from 'react-router-dom'
 import {
   LayoutDashboard,
   CalendarCheck,
-  KeyRound,
-  Wrench,
-  User,
-  ShieldCheck,
+  FileCheck2,
   Home,
   Utensils,
   Bell,
-  FileCheck2,
+  HelpCircle,
+  Settings,
+  User,
+  Shield,
+  Wrench,
+  KeyRound,
 } from 'lucide-react'
 import { Drawer } from '@/components/ui/Drawer'
 import { useAppStore } from '@/stores/appStore'
@@ -25,43 +27,46 @@ export const MobileNav: React.FC = () => {
   // Full Drawer Links
   const allLinksByRole = {
     student: [
-      { name: 'Dashboard', href: '/app/student', icon: LayoutDashboard },
+      { name: 'Overview', href: '/app/student', icon: LayoutDashboard },
       { name: 'Attendance', href: '/app/student/attendance', icon: CalendarCheck },
-      { name: 'Gate Pass', href: '/app/student/gate-pass', icon: KeyRound },
-      { name: 'Complaints', href: '/app/student/complaints', icon: Wrench },
-      { name: 'Mess & Menu', href: '/app/student/mess', icon: Utensils },
-      { name: 'Certificates', href: '/app/student/certificates', icon: FileCheck2 },
+      { name: 'Requests', href: '/app/student/requests', icon: FileCheck2 },
+      { name: 'Hostel', href: '/app/student/hostel', icon: Home },
+      { name: 'Mess', href: '/app/student/mess', icon: Utensils },
       { name: 'Notices', href: '/app/student/notices', icon: Bell },
-      { name: 'Profile', href: '/app/student/profile', icon: User },
+      { name: 'Help & Support', href: '/app/student/help', icon: HelpCircle },
+      { name: 'Settings', href: '/app/student/settings', icon: Settings },
     ],
     admin: [
       { name: 'Command Center', href: '/app/admin', icon: LayoutDashboard },
       { name: 'Requests', href: '/app/admin/requests', icon: FileCheck2 },
       { name: 'Complaints', href: '/app/admin/complaints', icon: Wrench },
-      { name: 'Hostel Ops', href: '/app/admin/hostels', icon: Home },
-      { name: 'Mess Ops', href: '/app/admin/mess', icon: Utensils },
+      { name: 'Students', href: '/app/admin/students', icon: User },
+      { name: 'Hostel Operations', href: '/app/admin/hostels', icon: Home },
       { name: 'Notices', href: '/app/admin/notices', icon: Bell },
+      { name: 'Settings', href: '/app/admin/settings', icon: Settings },
     ],
     warden: [
-      { name: 'Warden Station', href: '/app/warden', icon: LayoutDashboard },
+      { name: 'Station Overview', href: '/app/warden', icon: LayoutDashboard },
       { name: 'Gate Passes', href: '/app/warden/gate-passes', icon: KeyRound },
-      { name: 'Hostel Issues', href: '/app/warden/complaints', icon: Wrench },
+      { name: 'Hostel Complaints', href: '/app/warden/complaints', icon: Wrench },
       { name: 'Room Roster', href: '/app/warden/rooms', icon: Home },
+      { name: 'Settings', href: '/app/warden/settings', icon: Settings },
     ],
     staff: [
       { name: 'Workbench', href: '/app/staff', icon: LayoutDashboard },
       { name: 'Assigned Tasks', href: '/app/staff/tasks', icon: Wrench },
-      { name: 'Incidents', href: '/app/staff/complaints', icon: ShieldCheck },
+      { name: 'Reports', href: '/app/staff/complaints', icon: Shield },
+      { name: 'Settings', href: '/app/staff/settings', icon: Settings },
     ],
   }[currentRole]
 
   // Fixed Bottom Bar Quick Items
   const bottomBarItems = {
     student: [
-      { name: 'Home', href: '/app/student', icon: LayoutDashboard },
+      { name: 'Overview', href: '/app/student', icon: LayoutDashboard },
       { name: 'Attendance', href: '/app/student/attendance', icon: CalendarCheck },
-      { name: 'Gate Pass', href: '/app/student/gate-pass', icon: KeyRound },
-      { name: 'Complaints', href: '/app/student/complaints', icon: Wrench },
+      { name: 'Requests', href: '/app/student/requests', icon: FileCheck2 },
+      { name: 'Hostel', href: '/app/student/hostel', icon: Home },
       { name: 'Profile', href: '/app/student/profile', icon: User },
     ],
     admin: [
@@ -74,12 +79,12 @@ export const MobileNav: React.FC = () => {
       { name: 'Station', href: '/app/warden', icon: LayoutDashboard },
       { name: 'Passes', href: '/app/warden/gate-passes', icon: KeyRound },
       { name: 'Rooms', href: '/app/warden/rooms', icon: Home },
-      { name: 'Issues', href: '/app/warden/complaints', icon: Wrench },
+      { name: 'Complaints', href: '/app/warden/complaints', icon: Wrench },
     ],
     staff: [
       { name: 'Home', href: '/app/staff', icon: LayoutDashboard },
       { name: 'Tasks', href: '/app/staff/tasks', icon: Wrench },
-      { name: 'Issues', href: '/app/staff/complaints', icon: ShieldCheck },
+      { name: 'Reports', href: '/app/staff/complaints', icon: Shield },
     ],
   }[currentRole]
 
@@ -93,9 +98,6 @@ export const MobileNav: React.FC = () => {
         title="CampusOS Navigation"
       >
         <div className="space-y-1">
-          <div className="px-3 py-2 text-[11px] font-bold uppercase tracking-wider text-slate-400">
-            {currentRole.toUpperCase()} CHANNELS
-          </div>
           {allLinksByRole.map((item) => {
             const Icon = item.icon
             const isActive = location.pathname === item.href

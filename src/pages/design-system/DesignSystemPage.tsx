@@ -57,7 +57,7 @@ export const DesignSystemPage: React.FC = () => {
 
           <div className="flex items-center gap-2">
             <Badge variant="info" withDot>
-              Phase 0 Living Catalog
+              Component Catalog
             </Badge>
           </div>
         </div>
@@ -209,7 +209,7 @@ export const DesignSystemPage: React.FC = () => {
             <Input
               label="Success State"
               defaultValue="2201004128"
-              success="Valid BPUT Student Registration Number"
+              success="Valid Student Registration Number"
             />
             <Input
               label="Error State"
@@ -411,7 +411,7 @@ export const DesignSystemPage: React.FC = () => {
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         title="Campus Infrastructure Quick Report"
-        description="Phase 0 UI Modal Component Preview"
+        description="Standard Dialog & Modal Preview"
       >
         <div className="space-y-4 text-xs text-slate-600">
           <p>

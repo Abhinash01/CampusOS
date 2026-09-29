@@ -23,25 +23,45 @@ Welcome to the **CampusOS Page Guide**. This document details every page in Camp
 * **Page:** Authentication Portal
 * **Route:** `/login`
 * **Role:** All users (Student, Staff, Warden, Administrator)
-* **Purpose:** Secure gateway to authenticate university members into their assigned role interface.
-* **Main sections:** Campus ID / Email input, Password field, Role indicator selector, Keep me signed in toggle, Quick links to Forgot Password and Kiosk mode.
-* **Main actions:** Sign In button, SSO / University Google Workspace Auth button, Navigate to Forgot Password.
-* **Data shown:** Organization branding, session security notices.
-* **Future functionality:** JWT auth verification, multi-factor authentication (MFA), biometric WebAuthn, University Active Directory / LDAP single sign-on.
-* **Implementation phase:** Phase 0 (Shell & UX) / Phase 1 (Backend Auth Integration).
+* **Purpose:** Secure gateway to authenticate campus members into their assigned role interface without exposing persona selection tabs. Role is automatically derived from the authenticated account.
+* **Main sections:** University Email input, Password field, Remember on this device toggle, Forgot Password link, Link to create student account.
+* **Main actions:** Sign In (calls `/api/auth/login`), Navigate to Forgot Password, Navigate to Register.
+* **Data shown:** Organization branding, error feedback banner.
+* **Implementation phase:** Phase 1 (Completed).
+
+---
+
+### Student Registration
+* **Page:** Student Account Enrollment
+* **Route:** `/register`
+* **Role:** Public / Unenrolled Students
+* **Purpose:** Self-service registration for students to create their digital campus profile.
+* **Main sections:** Full Name, Student ID / Roll Number, University Email, Phone Number, Password, and Password Confirmation.
+* **Main actions:** Register Account (calls `/api/auth/register`), Navigate to Login.
+* **Data shown:** Real-time form validation errors (Zod schema).
+* **Implementation phase:** Phase 1 (Completed).
 
 ---
 
 ### Forgot Password
-* **Page:** Password Recovery
+* **Page:** Password Recovery Request
 * **Route:** `/forgot-password`
 * **Role:** All users
-* **Purpose:** Self-service password reset and identity verification for campus members who lost access.
-* **Main sections:** University roll number / official email input, recovery method selection (SMS OTP / Official Email link), OTP verification field.
-* **Main actions:** Send OTP, Verify OTP, Reset Password, Back to Login.
-* **Data shown:** Masked delivery destination (e.g. `s****@bput.ac.in`), rate limit countdown.
-* **Future functionality:** SMS gateway integration, secure reset token expiry handling, IT Helpdesk instant escalation.
-* **Implementation phase:** Phase 0 (Shell & UX) / Phase 1 (Full Recovery Flow).
+* **Purpose:** Self-service password reset request for members who lost access.
+* **Main sections:** University email input, reset instructions confirmation, dev-mode reset link helper.
+* **Main actions:** Send reset link (calls `/api/auth/forgot-password`), Proceed to Reset Password, Back to Login.
+* **Implementation phase:** Phase 1 (Completed).
+
+---
+
+### Reset Password
+* **Page:** Password Reset Completion
+* **Route:** `/reset-password`
+* **Role:** All users
+* **Purpose:** Secure password update using verified reset token.
+* **Main sections:** New password field, Confirm password field, token validity indicator.
+* **Main actions:** Update Password (calls `/api/auth/reset-password`), Navigate to Login.
+* **Implementation phase:** Phase 1 (Completed).
 
 ---
 

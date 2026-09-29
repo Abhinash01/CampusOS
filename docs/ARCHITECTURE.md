@@ -139,35 +139,41 @@ The platform is configured with `vite-plugin-pwa`:
 
 ---
 
-## 7. Future Backend Architecture (`Planned for future phases`)
+## 7. Backend Architecture (`Implemented in Phase 1`)
 
-The backend will be developed in Phase 1 and beyond using:
-* **Runtime:** Node.js with Express.js and TypeScript.
-* **Database:** MongoDB with Mongoose schema modeling.
-* **Authentication:** Stateless JWT with refresh tokens in HttpOnly cookies.
-* **Real-time Engine:** Socket.IO for live ticket status notifications and gate pass scanning events.
-* **Worker Queue:** BullMQ / Redis for automated notice scheduling and ticket SLA escalation timers.
+The backend is organized in the `/server` directory and provides robust, type-safe API services:
+* **Runtime:** Node.js with Express.js and TypeScript (`tsx` runtime / `tsc` build).
+* **Database & Persistence:** MongoDB with Mongoose schema modeling and fallback to an in-memory data store for seamless zero-dependency development/evaluation.
+* **Authentication:** Short-lived JWT access tokens in the `Authorization: Bearer <token>` header, paired with secure HTTP-only refresh tokens stored in cookies.
+* **Validation:** Strict runtime input validation using Zod for all authentication and user endpoints.
+* **Security:** Helmet HTTP headers, CORS with credential handling, rate limiting on authentication routes via `express-rate-limit`, and sanitized error logging preventing stack trace exposure.
 
 ```
 ┌───────────────────────────────────────────────────────────┐
 │                      Express.js API                       │
 ├─────────────────────┬───────────────────┬─────────────────┤
-│  /api/v1/auth       │  /api/v1/tickets  │  /api/v1/passes │
-│  - Login / Refresh  │  - Create / Route │  - Apply / Scan │
-│  - Role Verification│  - SLA Escalation │  - Warden Sign  │
+│  /api/auth          │  /api/health      │  /api/protected │
+│  - POST /login      │  - GET /health    │  - (Phase 2+)   │
+│  - POST /register   │                   │                 │
+│  - POST /refresh    │                   │                 │
+│  - GET  /me         │                   │                 │
+│  - POST /logout     │                   │                 │
+│  - POST /forgot-pass│                   │                 │
+│  - POST /reset-pass │                   │                 │
 └─────────────────────┴───────────────────┴─────────────────┘
 ```
 
 ---
 
-## 8. Future Role-Based Access Control (RBAC) (`Planned for future phases`)
+## 8. Role-Based Access Control (RBAC) (`Implemented in Phase 1`)
 
-A unified JWT payload will encode the principal's role and permission scope:
-* `STUDENT`: Can create tickets, apply for gate passes, request certificates, view personal attendance/mess.
-* `ADMIN`: Master oversight, department configuration, batch user management, SLA analytics.
-* `WARDEN`: Hostel-specific scope, gate pass approval, room allocation, wing inspection.
-* `STAFF`: Assigned task workbench, photo upload for repairs, repair sign-off via OTP.
-* `GUARD`: Security checkpoint gate pass scanner and visitor log reader.
+A unified JWT payload encodes the principal's role (`STUDENT`, `ADMIN`, `WARDEN`, `STAFF`):
+* `STUDENT`: Authenticated access to `/app/student/*` workspace.
+* `ADMIN`: Master oversight access to `/app/admin/*` command center.
+* `WARDEN`: Hostel station access to `/app/warden/*`.
+* `STAFF`: Field technician access to `/app/staff/*`.
+
+Server-side enforcement is guaranteed via the `authenticate` and `authorizeRoles(...)` middlewares in `server/src/middleware/auth.middleware.ts`, mirrored on the client via `ProtectedRoute.tsx`. Unauthorized role access attempts trigger an explicit 403 Forbidden on the backend and an unauthorized modal/redirect on the client.
 
 ---
 

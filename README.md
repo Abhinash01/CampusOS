@@ -1,8 +1,8 @@
 # CampusOS — Campus Life, Simplified.
 
 > **BPUT Hackathon 2026** — *Problem Statement 07: “Attendance, Mess, Hostel, Repeat: Campus Life, Debugged.”*  
-> **Status:** Phase 0 — Product Foundation, Design System & Application Shell  
-> **Environment:** Local Development Prototype (Production-Grade Architecture)
+> **Status:** Phase 1 Completed — Public Experience, Real Authentication & Backend Foundation  
+> **Environment:** Production-Grade Full-Stack Architecture (Frontend + Backend API)
 
 ---
 
@@ -28,22 +28,36 @@ CampusOS replaces fragmented physical registers at hostel security desks, paper 
 
 > **"Build the operating layer of a university campus, not just a college management website."**
 
-When a student files an issue like *"My hostel bathroom tap has been leaking for 9 days,"* the student shouldn't need to know which office or technician is on call. CampusOS automatically classifies the issue, identifies the hostel block and trade (Plumbing), assigns the on-duty technician, notifies the warden, tracks the SLA, verifies resolution via a 4-digit student OTP, and records the audit trail.
+* **Restrained & Professional:** Designed with Linear-level cleanliness and Notion-level simplicity. Zero generic AI templates, zero fake metrics, and zero clutter.
+* **Role-Appropriate Isolation:** Dedicated workspaces for students, administrators, hostel wardens, and maintenance technicians with strict backend role verification.
+* **Real Security & Resilient Architecture:** Real JWT access and refresh token authentication, bcrypt password hashing, input validation via Zod, rate limiting, and secure HTTP-only cookies.
 
 ---
 
-## 3. Technology Stack (Phase 0 Foundation)
+## 3. Technology Stack
 
+### Frontend Client
 * **UI Framework:** React 19 + TypeScript (Strict Mode)
-* **Build System:** Vite
+* **Build System:** Vite 8
 * **Styling System:** Tailwind CSS + Centralized Design Tokens (HSL)
-* **Design Philosophy:** Linear & Stripe-grade visual discipline; zero generic templates
+* **Design Philosophy:** Modern university operations platform; calm, trustworthy, high-density layouts
 * **Iconography:** Lucide React
 * **Motion & Micro-interactions:** Motion for React (`framer-motion`) with `prefers-reduced-motion` compliance
-* **Navigation & Routing:** React Router v7 with dynamic role-based application shells
-* **Client State:** Zustand (Active role switcher, sidebar state, simulated offline toggles)
-* **Server State:** TanStack Query v5 (Architecture prepared for Phase 1+ API contracts)
+* **Navigation & Routing:** React Router v7 with role-based route guards (`ProtectedRoute.tsx`)
+* **State Management:**
+  * **Server State:** TanStack Query v5 for API caching and mutations
+  * **Auth Store:** Zustand for token synchronization and user session
+  * **UI Store:** Zustand for layout and responsive drawer state
+* **Forms & Validation:** React Hook Form + Zod (`@hookform/resolvers/zod`)
 * **PWA Engine:** `vite-plugin-pwa` with Web App Manifest and Service Worker registration
+
+### Backend Service (`/server`)
+* **Runtime:** Node.js + Express.js with TypeScript (`tsx` runtime / `tsc` build)
+* **Database & ORM:** MongoDB + Mongoose (with development in-memory store fallback for seamless zero-setup evaluation)
+* **Authentication:** JWT access tokens (short-lived) + HTTP-only refresh tokens
+* **Password Security:** Salted hashing with `bcryptjs`
+* **Schema Validation:** Zod request body validation
+* **HTTP Security:** Helmet, CORS with credentials, express-rate-limit, and cookie-parser
 
 ---
 
@@ -51,98 +65,106 @@ When a student files an issue like *"My hostel bathroom tap has been leaking for
 
 ```text
 CampusOS/
+├── server/                           # Node.js + Express + TypeScript Backend
+│   ├── src/
+│   │   ├── config/                   # Environment validation & DB connection
+│   │   ├── controllers/              # Auth & session controllers
+│   │   ├── middleware/               # JWT auth guard, role authorizer, rate limiter, error handler
+│   │   ├── models/                   # Mongoose User model (STUDENT, ADMIN, WARDEN, STAFF)
+│   │   ├── routes/                   # Auth routes (/register, /login, /refresh, /me, etc.)
+│   │   ├── services/                 # User management, token hashing, account seeding
+│   │   ├── utils/                    # JWT signing & bcrypt password hashing
+│   │   └── index.ts                  # Express application root
+│   ├── .env.example                  # Backend environment template
+│   ├── package.json                  # Backend dependencies & scripts
+│   └── tsconfig.json                 # Backend TypeScript configuration
 ├── docs/                             # Core Product & Architecture Documentation
 │   ├── PAGES.md                      # Guide for all pages, personas & routes
 │   ├── ARCHITECTURE.md               # Frontend, backend, PWA & AI specs
 │   ├── WORKFLOWS.md                  # Detailed 5 core campus workflows
 │   └── DEVELOPMENT_PHASES.md         # Roadmap from Phase 0 to Phase 10
 ├── public/                           # Static assets, favicon, PWA icons
-│   └── favicon.svg                   # Minimal CampusOS technology wordmark
 ├── src/
-│   ├── app/                          # App bootstrap, Providers
 │   ├── components/
 │   │   ├── feedback/                 # EmptyState, ErrorState, OfflineBanner, PhasePlaceholder
-│   │   ├── layout/                   # AppShell, Topbar, Sidebar, MobileNav, RoleSwitcher, SearchModal
+│   │   ├── layout/                   # AppShell, Topbar, Sidebar, MobileNav, SearchModal
 │   │   ├── motion/                   # FadeIn, StaggerContainer, ScaleOnHover, AnimatedNumber
 │   │   └── ui/                       # Button, Input, Badge, Card, Modal, Drawer, Skeleton, Table, Toast
-│   ├── hooks/                        # Custom React hooks
-│   ├── lib/                          # Utility functions (cn helper, date formatters)
+│   ├── features/
+│   │   └── auth/                     # auth.api, auth.hooks, auth.store, auth.types, ProtectedRoute
 │   ├── pages/
 │   │   ├── app/                      # Persona dashboards (Student, Admin, Warden, Staff)
-│   │   ├── design-system/            # Living design system catalog (/design-system)
-│   │   └── public/                   # LandingPage, LoginPage, ForgotPasswordPage
-│   ├── routes/                       # Router definitions & placeholder mappings
-│   ├── stores/                       # Zustand appStore (Role switcher & UI states)
-│   ├── styles/                       # CSS custom properties & design tokens
+│   │   ├── design-system/            # Living component system catalog (/design-system)
+│   │   └── public/                   # LandingPage, LoginPage, RegisterPage, ForgotPasswordPage, ResetPasswordPage
+│   ├── routes/                       # Router definitions & ProtectedRoute boundaries
+│   ├── stores/                       # Zustand appStore (Sidebar & UI states)
 │   ├── types/                        # TypeScript type definitions
-│   ├── App.tsx                       # Main application shell with providers
-│   ├── index.css                     # Tailwind directives, CSS tokens & tnum setup
-│   └── main.tsx                      # React root entrypoint
-├── index.html                        # HTML5 document with SEO & Inter typography
-├── package.json                      # Dependencies and npm scripts
-├── postcss.config.js                 # PostCSS setup
-├── tailwind.config.js                # Design token mapping (#F8FAFC, #4F46E5, etc.)
-├── tsconfig.json                     # TypeScript config
-├── tsconfig.app.json                 # Bundler config with path alias (@/*)
-└── vite.config.ts                    # Vite config with PWA & alias integration
+│   ├── App.tsx                       # Main application shell with providers & auth init
+│   └── index.css                     # Tailwind directives, CSS tokens & typography
+├── package.json                      # Frontend dependencies and npm scripts
+└── vite.config.ts                    # Vite config with API proxy (/api -> http://localhost:5000)
 ```
 
 ---
 
 ## 5. Getting Started (Localhost Development)
 
-### Prerequisites
-* Node.js (v18 or higher recommended)
-* npm (v9 or higher)
-
-### 1. Install Dependencies
+### 1. Start the Backend API Server
+In a separate terminal:
 ```bash
+cd server
 npm install
-```
-
-### 2. Launch Local Development Server
-```bash
 npm run dev
 ```
+The server will start at `http://localhost:5000`.
 
-### 3. Open in Browser
-Visit the development URL displayed in your terminal (typically):
-```text
-http://localhost:5173
+### 2. Start the Frontend Client
+In the repository root:
+```bash
+npm install
+npm run dev
 ```
+Open `http://localhost:5173` in your browser. Vite automatically proxies `/api` requests to the backend server at `http://localhost:5000`.
 
 ---
 
-## 6. Route Navigation Guide
+## 6. Seed Credentials for Local Evaluation
+
+The backend automatically initializes demo accounts on startup:
+
+| Role | Email | Password | Student ID / Roll | Destination Dashboard |
+| :--- | :--- | :--- | :--- | :--- |
+| **Student** | `student@campusos.edu` | `Campus@123` | `2201004128` | `/app/student` |
+| **Administrator** | `admin@campusos.edu` | `Campus@123` | N/A | `/app/admin` |
+| **Hostel Warden** | `warden@campusos.edu` | `Campus@123` | N/A | `/app/warden` |
+| **Maintenance Staff** | `staff@campusos.edu` | `Campus@123` | N/A | `/app/staff` |
+
+> *Note: New student accounts can also be created anytime via the public student registration form at `/register`.*
+
+---
+
+## 7. Route Navigation Guide
 
 | Route | Role / Scope | Description |
 | :--- | :--- | :--- |
-| `/` | Public | Product landing page, problem vs. solution breakdown, and live preview |
-| `/login` | Public | Authentication gateway with interactive persona switcher |
-| `/forgot-password` | Public | Password recovery workflow shell |
-| `/app` | Authenticated | Redirects directly to the active role's dashboard |
-| `/app/student` | Student | Student Central Command (Attendance, Schedule, Pass, Mess) |
-| `/app/admin` | Admin | Campus Operations Command Center (SLA, Complaints, Velocity) |
-| `/app/warden` | Warden | Hostel Station (Roll-call, Gate passes, Room roster) |
-| `/app/staff` | Staff | Technician Workbench (Task queue, directions, OTP closure) |
-| `/design-system` | Developer | Living component library and token showcase |
-
-*Note: Navigating to future sub-routes (e.g. `/app/student/attendance`, `/app/admin/analytics`) renders a polished `PhasePlaceholder` documenting the upcoming phase, requirements, and scheduled capabilities without any fake backend code.*
-
----
-
-## 7. Current Limitations & Architecture Boundaries
-
-* **No Backend in Phase 0:** Phase 0 does not implement a live backend database, real JWT session verification, or live socket connections. Everything is client-side and architecture-ready.
-* **No Fake Mock Data:** The platform explicitly avoids fake APIs claiming to connect to a live backend.
-* **Offline Synchronization:** Phase 0 includes the PWA manifest, service worker registration, and the offline UI banner/toggle. True background queueing and IndexedDB sync will arrive in Phase 8.
+| `/` | Public | CampusOS landing page highlighting core campus operational capabilities |
+| `/login` | Public | Real authentication gateway (auto-redirects to appropriate persona dashboard) |
+| `/register` | Public | Student registration form with Zod validation |
+| `/forgot-password` | Public | Password recovery request with development reset token integration |
+| `/reset-password` | Public | Secure password reset form with token verification |
+| `/app` | Authenticated | Automatic role redirector |
+| `/app/student` | STUDENT | Student Central Command (Attendance, Living, Requests, Notices) |
+| `/app/admin` | ADMIN | Campus Operations Command Center (Oversight, Requests, Hostels) |
+| `/app/warden` | WARDEN | Hostel Station (Gate passes, Roll-call, Room roster) |
+| `/app/staff` | STAFF | Technician Workbench (Assigned tasks, incident logs) |
+| `/design-system` | Developer | Living component catalog and token showcase |
 
 ---
 
 ## 8. Development Roadmap
 
-* **Phase 0:** Product Foundation, Design System & Application Shell `[CURRENT]`
-* **Phase 1:** Public Experience & Real JWT Authentication
+* **Phase 0:** Product Foundation, Design System & Application Shell `[COMPLETED]`
+* **Phase 1:** Public Experience & Real JWT Authentication `[COMPLETED]`
 * **Phase 2:** Student Experience (Attendance, Schedule, Profile)
 * **Phase 3:** Core End-to-End Workflows (Gate Pass, Complaints, Certificates)
 * **Phase 4:** Campus Operations (Hostel, Mess, Staff Workbench)
@@ -152,12 +174,3 @@ http://localhost:5173
 * **Phase 8:** Low-Bandwidth, Offline Sync & Physical Kiosks
 * **Phase 9:** Premium UX Polish & Micro-interactions
 * **Phase 10:** Production Deployment & Hackathon Presentation
-
----
-
-## 9. Hackathon Documentation Links
-
-* [Page Directory & Specifications (docs/PAGES.md)](file:///c:/Users/DELL/Desktop/CampusOS/docs/PAGES.md)
-* [System Architecture Specification (docs/ARCHITECTURE.md)](file:///c:/Users/DELL/Desktop/CampusOS/docs/ARCHITECTURE.md)
-* [Core Campus Workflows (docs/WORKFLOWS.md)](file:///c:/Users/DELL/Desktop/CampusOS/docs/WORKFLOWS.md)
-* [Development Roadmap Phases (docs/DEVELOPMENT_PHASES.md)](file:///c:/Users/DELL/Desktop/CampusOS/docs/DEVELOPMENT_PHASES.md)

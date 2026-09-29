@@ -42,7 +42,7 @@ export const WardenDashboard: React.FC = () => {
       roll: '2401001190',
       room: 'B-201',
       type: 'Night Outing',
-      dest: 'Hackathon Lab Building',
+      dest: 'Central Research Complex',
       returnBy: 'Tomorrow, 07:00 AM',
       parentStatus: 'Faculty Endorsed',
     },
