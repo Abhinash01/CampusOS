@@ -17,6 +17,14 @@ const loginSchema = z.object({
 
 type LoginFormValues = z.infer<typeof loginSchema>
 
+// Seeded development accounts for rapid local testing (strictly development only)
+const DEV_ACCOUNTS = [
+  { role: 'Student', email: 'student@campusos.edu', password: 'Campus@123' },
+  { role: 'Admin', email: 'admin@campusos.edu', password: 'Campus@123' },
+  { role: 'Warden', email: 'warden@campusos.edu', password: 'Campus@123' },
+  { role: 'Staff', email: 'staff@campusos.edu', password: 'Campus@123' },
+] as const
+
 export const LoginPage: React.FC = () => {
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
   const loginMutation = useLogin()
@@ -36,6 +44,7 @@ export const LoginPage: React.FC = () => {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
@@ -54,6 +63,12 @@ export const LoginPage: React.FC = () => {
     } catch (err: any) {
       setErrorMessage(err.message || 'Email or password is incorrect.')
     }
+  }
+
+  const handleDevQuickLogin = (email: string, password: string) => {
+    setValue('email', email, { shouldValidate: true })
+    setValue('password', password, { shouldValidate: true })
+    onSubmit({ email, password })
   }
 
   return (
@@ -146,6 +161,35 @@ export const LoginPage: React.FC = () => {
                 </Button>
               </div>
             </form>
+
+            {/* Development-Only Quick Test Login (Completely excluded in production builds) */}
+            {import.meta.env.DEV && (
+              <div className="mt-6 pt-5 border-t border-slate-100">
+                <div className="flex items-center justify-between mb-3">
+                  <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">
+                    Development Test Login
+                  </span>
+                  <span className="text-[10px] font-mono font-medium px-2 py-0.5 rounded bg-rose-50 border border-rose-200 text-rose-700">
+                    DEV ONLY
+                  </span>
+                </div>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                  {DEV_ACCOUNTS.map((acc) => (
+                    <Button
+                      key={acc.role}
+                      type="button"
+                      variant="outline"
+                      size="sm"
+                      disabled={loginMutation.isPending}
+                      onClick={() => handleDevQuickLogin(acc.email, acc.password)}
+                      className="text-xs py-1.5 h-auto justify-center font-medium"
+                    >
+                      {acc.role}
+                    </Button>
+                  ))}
+                </div>
+              </div>
+            )}
 
             <div className="mt-6 pt-5 border-t border-slate-100 text-center">
               <p className="text-xs text-slate-600">

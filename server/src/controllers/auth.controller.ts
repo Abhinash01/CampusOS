@@ -7,6 +7,7 @@ import {
   generateRefreshToken,
   verifyRefreshToken,
 } from '../utils/jwt.utils.js'
+import { env } from '../config/env.js'
 
 export const registerSchema = z
   .object({
@@ -44,6 +45,14 @@ export const resetPasswordSchema = z
     path: ['password'],
   })
 
+const getCookieOptions = () => ({
+  httpOnly: true,
+  secure: env.NODE_ENV === 'production',
+  sameSite: 'lax' as const,
+  maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+  path: '/',
+})
+
 export const authController = {
   async register(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
@@ -52,14 +61,22 @@ export const authController = {
       // Check if email already registered
       const existingEmail = await authService.findUserByEmail(data.email)
       if (existingEmail) {
-        res.status(409).json({ error: 'An account with this email already exists.' })
+        res.status(409).json({
+          success: false,
+          error: 'An account with this email already exists.',
+          message: 'An account with this email already exists.',
+        })
         return
       }
 
       // Check if studentId already registered
       const existingId = await authService.findUserByStudentId(data.studentId)
       if (existingId) {
-        res.status(409).json({ error: 'This Student ID is already registered.' })
+        res.status(409).json({
+          success: false,
+          error: 'This Student ID is already registered.',
+          message: 'This Student ID is already registered.',
+        })
         return
       }
 
@@ -89,18 +106,33 @@ export const authController = {
         role: user.role,
       })
 
+      // Attach HTTP-only refresh cookie
+      res.cookie('refreshToken', refreshToken, getCookieOptions())
+
+      const serializedUser = {
+        _id: user._id.toString(),
+        id: user._id.toString(),
+        name: user.name,
+        email: user.email,
+        role: user.role,
+        studentId: user.studentId,
+        phone: user.phone,
+        avatar: user.avatar,
+        isActive: user.isActive,
+        createdAt: user.createdAt,
+        updatedAt: user.updatedAt,
+      }
+
       res.status(201).json({
+        success: true,
         message: 'Registration successful',
-        user: {
-          id: user._id,
-          name: user.name,
-          email: user.email,
-          role: user.role,
-          studentId: user.studentId,
-          phone: user.phone,
+        data: {
+          user: serializedUser,
+          accessToken,
         },
+        // Backwards compatibility for legacy root consumers
+        user: serializedUser,
         accessToken,
-        refreshToken,
       })
     } catch (err) {
       next(err)
@@ -113,13 +145,21 @@ export const authController = {
 
       const user = await authService.findUserByEmail(data.email)
       if (!user || !user.isActive) {
-        res.status(401).json({ error: 'Email or password is incorrect.' })
+        res.status(401).json({
+          success: false,
+          error: 'Email or password is incorrect.',
+          message: 'Email or password is incorrect.',
+        })
         return
       }
 
       const isMatch = await comparePassword(data.password, user.passwordHash)
       if (!isMatch) {
-        res.status(401).json({ error: 'Email or password is incorrect.' })
+        res.status(401).json({
+          success: false,
+          error: 'Email or password is incorrect.',
+          message: 'Email or password is incorrect.',
+        })
         return
       }
 
@@ -135,18 +175,33 @@ export const authController = {
         role: user.role,
       })
 
+      // Attach HTTP-only refresh cookie
+      res.cookie('refreshToken', refreshToken, getCookieOptions())
+
+      const serializedUser = {
+        _id: user._id.toString(),
+        id: user._id.toString(),
+        name: user.name,
+        email: user.email,
+        role: user.role,
+        studentId: user.studentId,
+        phone: user.phone,
+        avatar: user.avatar,
+        isActive: user.isActive,
+        createdAt: user.createdAt,
+        updatedAt: user.updatedAt,
+      }
+
       res.status(200).json({
+        success: true,
         message: 'Signed in successfully',
-        user: {
-          id: user._id,
-          name: user.name,
-          email: user.email,
-          role: user.role,
-          studentId: user.studentId,
-          phone: user.phone,
+        data: {
+          user: serializedUser,
+          accessToken,
         },
+        // Backwards compatibility for legacy root consumers
+        user: serializedUser,
         accessToken,
-        refreshToken,
       })
     } catch (err) {
       next(err)
@@ -155,39 +210,75 @@ export const authController = {
 
   async refreshToken(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-      const token = req.body.refreshToken || req.cookies?.refreshToken
+      const token = req.cookies?.refreshToken || req.body?.refreshToken
       if (!token) {
-        res.status(401).json({ error: 'Refresh token is required.' })
+        res.status(401).json({
+          success: false,
+          error: 'Refresh token is required.',
+          message: 'Refresh token is required.',
+        })
         return
       }
 
       const payload = verifyRefreshToken(token)
       if (!payload) {
-        res.status(401).json({ error: 'Refresh token is invalid or expired. Please sign in again.' })
+        res.clearCookie('refreshToken', { path: '/' })
+        res.status(401).json({
+          success: false,
+          error: 'Refresh token is invalid or expired. Please sign in again.',
+          message: 'Refresh token is invalid or expired. Please sign in again.',
+        })
         return
       }
 
       const user = await authService.getUserById(payload.userId)
       if (!user || !user.isActive) {
-        res.status(401).json({ error: 'User account not found.' })
+        res.clearCookie('refreshToken', { path: '/' })
+        res.status(401).json({
+          success: false,
+          error: 'User account not found or deactivated.',
+          message: 'User account not found or deactivated.',
+        })
         return
       }
 
       const newAccessToken = generateAccessToken({
-        userId: user._id,
+        userId: user._id.toString(),
         email: user.email,
         role: user.role,
       })
 
       const newRefreshToken = generateRefreshToken({
-        userId: user._id,
+        userId: user._id.toString(),
         email: user.email,
         role: user.role,
       })
 
+      res.cookie('refreshToken', newRefreshToken, getCookieOptions())
+
+      const serializedUser = {
+        _id: user._id.toString(),
+        id: user._id.toString(),
+        name: user.name,
+        email: user.email,
+        role: user.role,
+        studentId: user.studentId,
+        phone: user.phone,
+        avatar: user.avatar,
+        isActive: user.isActive,
+        createdAt: user.createdAt,
+        updatedAt: user.updatedAt,
+      }
+
       res.status(200).json({
+        success: true,
+        message: 'Token refreshed successfully',
+        data: {
+          accessToken: newAccessToken,
+          user: serializedUser,
+        },
         accessToken: newAccessToken,
-        refreshToken: newRefreshToken,
+        user: serializedUser,
       })
     } catch (err) {
       next(err)
@@ -196,26 +287,42 @@ export const authController = {
 
   async getMe(req: Request, res: Response): Promise<void> {
     if (!req.user) {
-      res.status(401).json({ error: 'Authentication required.' })
+      res.status(401).json({
+        success: false,
+        error: 'Authentication required.',
+        message: 'Authentication required.',
+      })
       return
     }
 
     const user = await authService.getUserById(req.user.id)
     if (!user) {
-      res.status(404).json({ error: 'User profile not found.' })
+      res.status(404).json({
+        success: false,
+        error: 'User profile not found.',
+        message: 'User profile not found.',
+      })
       return
     }
 
+    const serializedUser = {
+      _id: user._id.toString(),
+      id: user._id.toString(),
+      name: user.name,
+      email: user.email,
+      role: user.role,
+      studentId: user.studentId,
+      phone: user.phone,
+      avatar: user.avatar,
+      isActive: user.isActive,
+      createdAt: user.createdAt,
+      updatedAt: user.updatedAt,
+    }
+
     res.status(200).json({
-      user: {
-        id: user._id,
-        name: user.name,
-        email: user.email,
-        role: user.role,
-        studentId: user.studentId,
-        phone: user.phone,
-        avatar: user.avatar,
-      },
+      success: true,
+      data: serializedUser,
+      user: serializedUser,
     })
   },
 
@@ -252,7 +359,11 @@ export const authController = {
 
       const success = await authService.resetPasswordByToken(data.token, newHash, data.email)
       if (!success) {
-        res.status(400).json({ error: 'Invalid or expired password reset token.' })
+        res.status(400).json({
+          success: false,
+          error: 'Invalid or expired password reset token.',
+          message: 'Invalid or expired password reset token.',
+        })
         return
       }
 
@@ -266,7 +377,10 @@ export const authController = {
   },
 
   async logout(_req: Request, res: Response): Promise<void> {
-    res.clearCookie('refreshToken')
-    res.status(200).json({ message: 'Signed out successfully.' })
+    res.clearCookie('refreshToken', { path: '/' })
+    res.status(200).json({
+      success: true,
+      message: 'Signed out successfully.',
+    })
   },
 }

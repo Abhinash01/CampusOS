@@ -14,15 +14,21 @@ export function errorHandler(
       field: issue.path.join('.'),
       message: issue.message,
     }))
+    const primaryMessage = issues[0]?.message || 'Validation failed'
     res.status(400).json({
-      error: 'Validation failed',
+      success: false,
+      error: primaryMessage,
+      message: primaryMessage,
       details: issues,
     })
     return
   }
 
   // Never expose raw stack traces or internal database errors to client
+  const fallbackMessage = 'An unexpected server error occurred. Please try again later.'
   res.status(500).json({
-    error: 'An unexpected server error occurred. Please try again later.',
+    success: false,
+    error: fallbackMessage,
+    message: fallbackMessage,
   })
 }

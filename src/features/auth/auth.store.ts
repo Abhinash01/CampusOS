@@ -24,7 +24,6 @@ export const useAuthStore = create<AuthState>((set) => ({
   setUser: (user) => {
     set({ user, isAuthenticated: !!user })
     if (user) {
-      // Sync with role in appStore
       useAppStore.getState().setRole(user.role.toLowerCase() as any)
     }
   },
@@ -33,7 +32,12 @@ export const useAuthStore = create<AuthState>((set) => ({
     set({ isLoading: true })
     try {
       const response = await authApi.login(credentials)
-      const user = response.data.user
+      const user = response.data?.user || response.user
+
+      if (!user) {
+        throw new Error('Authentication response did not contain user profile.')
+      }
+
       set({ user, isAuthenticated: true, isLoading: false })
       useAppStore.getState().setRole(user.role.toLowerCase() as any)
       return user
@@ -47,7 +51,12 @@ export const useAuthStore = create<AuthState>((set) => ({
     set({ isLoading: true })
     try {
       const response = await authApi.register(data)
-      const user = response.data.user
+      const user = response.data?.user || response.user
+
+      if (!user) {
+        throw new Error('Registration response did not contain user profile.')
+      }
+
       set({ user, isAuthenticated: true, isLoading: false })
       useAppStore.getState().setRole('student')
       return user
@@ -68,15 +77,17 @@ export const useAuthStore = create<AuthState>((set) => ({
 
   initialize: async () => {
     try {
-      // Try refresh token to restore session
+      // Try refresh token to restore session from HTTP-only cookie
       const refreshRes = await authApi.refreshToken()
-      if (refreshRes.data?.user) {
+      const user = refreshRes.data?.user || refreshRes.user
+
+      if (user) {
         set({
-          user: refreshRes.data.user,
+          user,
           isAuthenticated: true,
           isInitialized: true,
         })
-        useAppStore.getState().setRole(refreshRes.data.user.role.toLowerCase() as any)
+        useAppStore.getState().setRole(user.role.toLowerCase() as any)
         return
       }
     } catch {

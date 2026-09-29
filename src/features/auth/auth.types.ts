@@ -2,6 +2,7 @@ export type UserRole = 'STUDENT' | 'ADMIN' | 'WARDEN' | 'STAFF'
 
 export interface User {
   _id: string
+  id?: string
   name: string
   email: string
   role: UserRole
@@ -9,8 +10,8 @@ export interface User {
   phone?: string
   avatar?: string
   isActive: boolean
-  createdAt: string
-  updatedAt: string
+  createdAt?: string | Date
+  updatedAt?: string | Date
 }
 
 export interface AuthTokens {
@@ -24,6 +25,26 @@ export interface AuthResponse {
     user: User
     accessToken: string
   }
+  // Backwards compatibility
+  user?: User
+  accessToken?: string
+}
+
+export interface GetMeResponse {
+  success: boolean
+  data: User
+  user?: User
+}
+
+export interface RefreshResponse {
+  success: boolean
+  message?: string
+  data: {
+    accessToken: string
+    user: User
+  }
+  accessToken?: string
+  user?: User
 }
 
 export interface ApiSuccessResponse<T = unknown> {

@@ -15,8 +15,11 @@ export function useCurrentUser() {
     queryKey: AUTH_KEYS.me,
     queryFn: async () => {
       const res = await authApi.getMe()
-      setUser(res.data)
-      return res.data
+      const user = res.data || (res as any).user
+      if (user) {
+        setUser(user)
+      }
+      return user
     },
     enabled: isAuthenticated,
     staleTime: 5 * 60 * 1000,
