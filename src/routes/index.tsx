@@ -6,7 +6,17 @@ import { LoginPage } from '@/pages/public/LoginPage'
 import { RegisterPage } from '@/pages/public/RegisterPage'
 import { ForgotPasswordPage } from '@/pages/public/ForgotPasswordPage'
 import { ResetPasswordPage } from '@/pages/public/ResetPasswordPage'
-import { StudentDashboard } from '@/pages/app/StudentDashboard'
+import {
+  StudentDashboardPage,
+  StudentAttendancePage,
+  StudentRequestsPage,
+  StudentHostelPage,
+  StudentMessPage,
+  StudentNoticesPage,
+  StudentSupportPage,
+  StudentProfilePage,
+  StudentSettingsPage,
+} from '@/pages/student'
 import { AdminDashboard } from '@/pages/app/AdminDashboard'
 import { WardenDashboard } from '@/pages/app/WardenDashboard'
 import { StaffDashboard } from '@/pages/app/StaffDashboard'
@@ -62,12 +72,12 @@ export const router = createBrowserRouter([
         element: <AppIndexRedirect />,
       },
 
-      // Student Persona
+      // Student Persona (Phase 2 Master Implementation)
       {
         path: 'student',
         element: (
           <ProtectedRoute allowedRoles={['STUDENT']}>
-            <StudentDashboard />
+            <StudentDashboardPage />
           </ProtectedRoute>
         ),
       },
@@ -75,11 +85,7 @@ export const router = createBrowserRouter([
         path: 'student/attendance',
         element: (
           <ProtectedRoute allowedRoles={['STUDENT']}>
-            <PhasePlaceholder
-              title="Attendance Records"
-              description="Subject-wise lecture tracking, leave balances, and official attendance confirmations."
-              parentRoute="/app/student"
-            />
+            <StudentAttendancePage />
           </ProtectedRoute>
         ),
       },
@@ -87,11 +93,7 @@ export const router = createBrowserRouter([
         path: 'student/requests',
         element: (
           <ProtectedRoute allowedRoles={['STUDENT']}>
-            <PhasePlaceholder
-              title="Requests"
-              description="No active requests found. When you submit a campus request, its status and progress will appear here."
-              parentRoute="/app/student"
-            />
+            <StudentRequestsPage />
           </ProtectedRoute>
         ),
       },
@@ -99,11 +101,7 @@ export const router = createBrowserRouter([
         path: 'student/hostel',
         element: (
           <ProtectedRoute allowedRoles={['STUDENT']}>
-            <PhasePlaceholder
-              title="Hostel Living & Room Records"
-              description="Room occupancy status, roommate details, hostel warden contacts, and room asset inventory condition."
-              parentRoute="/app/student"
-            />
+            <StudentHostelPage />
           </ProtectedRoute>
         ),
       },
@@ -111,11 +109,7 @@ export const router = createBrowserRouter([
         path: 'student/mess',
         element: (
           <ProtectedRoute allowedRoles={['STUDENT']}>
-            <PhasePlaceholder
-              title="Mess Operations & Dining"
-              description="Daily meal schedule with nutrition tags, feedback ratings, and mess status."
-              parentRoute="/app/student"
-            />
+            <StudentMessPage />
           </ProtectedRoute>
         ),
       },
@@ -123,11 +117,7 @@ export const router = createBrowserRouter([
         path: 'student/notices',
         element: (
           <ProtectedRoute allowedRoles={['STUDENT']}>
-            <PhasePlaceholder
-              title="Campus & Department Notices"
-              description="Official university circulars and announcements targeted by branch, semester, and hostel."
-              parentRoute="/app/student"
-            />
+            <StudentNoticesPage />
           </ProtectedRoute>
         ),
       },
@@ -135,11 +125,23 @@ export const router = createBrowserRouter([
         path: 'student/help',
         element: (
           <ProtectedRoute allowedRoles={['STUDENT']}>
-            <PhasePlaceholder
-              title="Help & Support"
-              description="Campus directory, emergency contacts, administrative FAQs, and support ticketing."
-              parentRoute="/app/student"
-            />
+            <StudentSupportPage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: 'student/support',
+        element: (
+          <ProtectedRoute allowedRoles={['STUDENT']}>
+            <StudentSupportPage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: 'student/profile',
+        element: (
+          <ProtectedRoute allowedRoles={['STUDENT']}>
+            <StudentProfilePage />
           </ProtectedRoute>
         ),
       },
@@ -147,11 +149,7 @@ export const router = createBrowserRouter([
         path: 'student/settings',
         element: (
           <ProtectedRoute allowedRoles={['STUDENT']}>
-            <PhasePlaceholder
-              title="Account Settings"
-              description="Manage security preferences, notification channels, and active login sessions."
-              parentRoute="/app/student"
-            />
+            <StudentSettingsPage />
           </ProtectedRoute>
         ),
       },
