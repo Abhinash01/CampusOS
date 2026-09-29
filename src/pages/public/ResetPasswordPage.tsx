@@ -61,11 +61,15 @@ export const ResetPasswordPage: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8 selection:bg-indigo-100 selection:text-indigo-900">
+    <div className="min-h-screen bg-[#F8FAFC] flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8 selection:bg-indigo-100 selection:text-indigo-900 relative overflow-hidden">
+      {/* Ambient background decoration */}
+      <div className="absolute inset-0 bg-grid-slate radial-mask opacity-60 pointer-events-none -z-10" />
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none -z-10" />
+
       <FadeIn direction="up">
         <div className="sm:mx-auto sm:w-full sm:max-w-md text-center">
-          <Link to="/" className="inline-flex items-center gap-2 group mb-2">
-            <div className="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center text-white font-bold text-base shadow-sm group-hover:bg-indigo-700 transition-colors">
+          <Link to="/" className="inline-flex items-center gap-2.5 group mb-2">
+            <div className="w-9 h-9 rounded-[10px] bg-indigo-600 flex items-center justify-center text-white font-bold text-sm shadow-[0_1px_3px_rgba(79,70,229,0.3)] group-hover:bg-indigo-700 transition-colors">
               OS
             </div>
             <span className="text-xl font-bold tracking-tight text-slate-900">CampusOS</span>
@@ -79,7 +83,7 @@ export const ResetPasswordPage: React.FC = () => {
         </div>
 
         <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-          <Card className="py-8 px-6 sm:px-10 border-slate-200 shadow-xs bg-white rounded-xl">
+          <Card className="py-8 px-6 sm:px-10 border-slate-200/90 shadow-[0_4px_24px_-4px_rgba(15,23,42,0.06),0_0_0_1px_rgba(226,232,240,0.7)] bg-white rounded-2xl">
             {errorMessage && (
               <div className="mb-5 p-3.5 rounded-lg bg-rose-50 border border-rose-200 flex items-start gap-2.5 text-xs text-rose-700">
                 <AlertCircle className="w-4 h-4 shrink-0 mt-0.5 text-rose-600" />

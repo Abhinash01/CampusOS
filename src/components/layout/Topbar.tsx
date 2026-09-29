@@ -62,7 +62,7 @@ export const Topbar: React.FC = () => {
   }
 
   return (
-    <header className="sticky top-0 z-30 flex h-16 w-full items-center justify-between border-b border-slate-200 bg-white px-4 sm:px-6 transition-all">
+    <header className="sticky top-0 z-30 flex h-16 w-full items-center justify-between border-b border-slate-200/80 bg-white/90 backdrop-blur px-4 sm:px-6 transition-all">
       {/* Left: Mobile Toggle & Brand */}
       <div className="flex items-center gap-3">
         <button
@@ -74,8 +74,8 @@ export const Topbar: React.FC = () => {
           <Menu className="w-5 h-5" />
         </button>
 
-        <Link to={`/app/${currentRole}`} className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center text-white shadow-sm font-bold text-sm tracking-wider">
+        <Link to={`/app/${currentRole}`} className="flex items-center gap-2.5 group">
+          <div className="w-8 h-8 rounded-[10px] bg-indigo-600 flex items-center justify-center text-white shadow-[0_1px_3px_rgba(79,70,229,0.3)] group-hover:bg-indigo-700 transition-colors font-bold text-sm tracking-wider">
             OS
           </div>
           <span className="text-base font-bold tracking-tight text-slate-900">CampusOS</span>
